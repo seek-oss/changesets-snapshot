@@ -1,0 +1,11 @@
+# managed by skuba
+.idea/
+.serverless/
+.vscode/
+node_modules*/
+
+/coverage*/
+/dist*/
+/lib*/
+/tmp*/
+# end managed by skuba

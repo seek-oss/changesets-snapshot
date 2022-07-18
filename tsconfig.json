@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES2020",
+      "DOM" // or declare WebAssembly shim? -- error TS2503: Cannot find namespace 'WebAssembly'
+    ],
+    "outDir": "dist",
+    "removeComments": false,
+    "target": "ES2020",
+    "types": ["@types/node", "@types/jest"]
+  },
+  "exclude": ["./node_modules", "dist*/**/*"],
+  "extends": "skuba/config/tsconfig.json"
+}
