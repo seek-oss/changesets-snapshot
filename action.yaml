@@ -1,0 +1,21 @@
+name: Changesets Snapshot
+description: A GitHub action to publish snapshot releases with Changesets
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+inputs:
+  pre-publish:
+    description: 'The command to use to build and publish packages'
+    required: false
+  pre-version:
+    description: 'The command to update version, edit CHANGELOG, read and delete changesets. Default to `changeset version` if not provided'
+    required: false
+outputs:
+  published:
+    description: A boolean value to indicate whether a publishing is happened or not
+  publishedPackages:
+    description: >
+      A JSON array to present the published packages. The format is `[{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]`
+branding:
+  icon: 'camera'
+  color: 'blue'
