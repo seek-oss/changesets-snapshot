@@ -1,6 +1,6 @@
 {
-  "version": "0.0.2",
-  "name": "@seek/changesets-snapshot",
+  "version": "0.0.3",
+  "name": "changesets-snapshot",
   "main": "dist/index.js",
   "license": "MIT",
   "sideEffects": false,

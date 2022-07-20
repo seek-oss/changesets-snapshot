@@ -1,4 +1,10 @@
-# @seek/changesets-snapshot
+# changesets-snapshot
+
+## 0.0.3
+
+### Patch Changes
+
+- Fix package name
 
 ## 0.0.2
 
