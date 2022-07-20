@@ -1,11 +1,11 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { detect, getCommand } from '@antfu/ni';
+import resolveFrom from 'resolve-from';
 
 import { logger } from './logger';
 import { ensureNpmrc } from './npm-utils';
 import { run, runPublish } from './run';
-import { execWithOutput } from './utils';
 
 async function writeSummary({
   title,
@@ -16,7 +16,7 @@ async function writeSummary({
   message: string;
   codeBlock?: string;
 }) {
-  core.summary.addHeading(title, 3)
+  core.summary.addHeading(title, 3);
   core.summary.addRaw(`<p>${message}</p>`, true);
   if (codeBlock) {
     core.summary.addCodeBlock(codeBlock);
@@ -28,41 +28,41 @@ export const publishSnapshot = async () => {
   core.setOutput('published', false);
   core.setOutput('publishedPackages', []);
 
-  const githubToken = process.env.GITHUB_TOKEN;
+  const cwd = process.cwd();
 
+  const githubToken = process.env.GITHUB_TOKEN;
   if (!githubToken) {
     core.setFailed('Unable to retrieve GitHub token');
     return;
   }
 
   const npmToken = process.env.NPM_TOKEN;
-
   if (!npmToken) {
     core.setFailed('Unable to retrieve NPM publish token');
     throw new Error();
+  }
+
+  const packageManager = await detect({ cwd });
+  if (!packageManager) {
+    core.setFailed('Unable to detect package manager');
+    throw new Error();
+  }
+
+  const preVersionScript = core.getInput('pre-version');
+  if (preVersionScript) {
+    await run({ script: preVersionScript, cwd });
   }
 
   ensureNpmrc(npmToken);
 
   const branch = github.context.ref.replace('refs/heads/', '');
   const cleansedBranchName = branch.replace(/\//g, '_');
-
-  const preVersionScript = core.getInput('pre-version');
-
-  if (preVersionScript) {
-    await execWithOutput(preVersionScript);
-  }
-
-  const packageManager = await detect({ cwd: process.cwd() });
-
-  if (!packageManager) {
-    core.setFailed('Unable to detect package manager');
-    throw new Error();
-  }
+  const changesetsCli = resolveFrom(cwd, '@changesets/cli/bin.js');
 
   // Run the snapshot version
   const versionResult = await run({
-    script: `pnpm exec changeset version --snapshot ${cleansedBranchName}`,
+    script: `node ${changesetsCli} version --snapshot ${cleansedBranchName}`,
+    cwd,
   });
 
   if (versionResult.stderr.indexOf('No unreleased changesets found') > 0) {
@@ -80,7 +80,8 @@ export const publishSnapshot = async () => {
   }
 
   const result = await runPublish({
-    script: `pnpm exec changeset publish --tag ${cleansedBranchName}`,
+    script: `node ${changesetsCli} publish --tag ${cleansedBranchName}`,
+    cwd,
   });
 
   core.setOutput('published', result.published);

@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.9
+
+### Patch Changes
+
+- Execute changesets cli with Node, not pnpm
+
 ## 0.0.8
 
 ### Patch Changes

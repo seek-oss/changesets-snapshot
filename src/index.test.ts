@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { detect } from '@antfu/ni';
+import resolveFrom from 'resolve-from';
 
 import { logger } from './logger';
 import { run, runPublish } from './run';
@@ -13,6 +14,7 @@ jest.mock('@antfu/ni', () => ({
   ...jest.requireActual('@antfu/ni'),
   detect: jest.fn().mockName('@antfu/ni.detect'),
 }));
+jest.mock('resolve-from');
 jest.mock('./npm-utils');
 jest.mock('./run');
 jest.mock('./logger');
@@ -51,6 +53,11 @@ test.each(['yarn', 'npm', 'pnpm'])(
       .mocked(detect)
       .mockResolvedValueOnce(
         packageManager as unknown as ReturnType<typeof detect>,
+      );
+    jest
+      .mocked(resolveFrom)
+      .mockImplementationOnce(
+        (_fromDirectory, moduleId) => `/__mocked_node_modules__/${moduleId}`,
       );
 
     await publishSnapshot();

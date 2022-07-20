@@ -18,7 +18,6 @@ export const execWithOutput = async (
           myError += data.toString();
         },
       },
-
       ...options,
     }),
     stdout: myOutput,
