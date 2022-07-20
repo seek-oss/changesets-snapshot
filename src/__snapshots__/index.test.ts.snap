@@ -20,11 +20,42 @@ Array [
 ]
 `;
 
-exports[`command output for npm: summary 1`] = `"🦋 New snapshots published!"`;
+exports[`command output for npm: summary 1`] = `
+Array [
+  Array [
+    "🦋 New snapshots published!",
+    3,
+  ],
+  Array [
+    "🦋 New snapshots published!",
+    3,
+  ],
+]
+`;
 
-exports[`command output for npm: summary 2`] = `"<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>"`;
+exports[`command output for npm: summary 2`] = `
+Array [
+  Array [
+    "<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>",
+    true,
+  ],
+  Array [
+    "<p>Version: <code>@multiple/package-two@1.2.3-SNAPSHOT</code></p>",
+    true,
+  ],
+]
+`;
 
-exports[`command output for npm: summary 3`] = `"npm i @multiple/package1@feature_123-branch"`;
+exports[`command output for npm: summary 3`] = `
+Array [
+  Array [
+    "npm i @multiple/package1@feature_123-branch",
+  ],
+  Array [
+    "npm i @multiple/package-two@feature_123-branch",
+  ],
+]
+`;
 
 exports[`command output for pnpm: logger.log 1`] = `
 Array [
@@ -46,11 +77,42 @@ Array [
 ]
 `;
 
-exports[`command output for pnpm: summary 1`] = `"🦋 New snapshots published!"`;
+exports[`command output for pnpm: summary 1`] = `
+Array [
+  Array [
+    "🦋 New snapshots published!",
+    3,
+  ],
+  Array [
+    "🦋 New snapshots published!",
+    3,
+  ],
+]
+`;
 
-exports[`command output for pnpm: summary 2`] = `"<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>"`;
+exports[`command output for pnpm: summary 2`] = `
+Array [
+  Array [
+    "<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>",
+    true,
+  ],
+  Array [
+    "<p>Version: <code>@multiple/package-two@1.2.3-SNAPSHOT</code></p>",
+    true,
+  ],
+]
+`;
 
-exports[`command output for pnpm: summary 3`] = `"pnpm add @multiple/package1@feature_123-branch"`;
+exports[`command output for pnpm: summary 3`] = `
+Array [
+  Array [
+    "pnpm add @multiple/package1@feature_123-branch",
+  ],
+  Array [
+    "pnpm add @multiple/package-two@feature_123-branch",
+  ],
+]
+`;
 
 exports[`command output for yarn: logger.log 1`] = `
 Array [
@@ -72,8 +134,39 @@ Array [
 ]
 `;
 
-exports[`command output for yarn: summary 1`] = `"🦋 New snapshots published!"`;
+exports[`command output for yarn: summary 1`] = `
+Array [
+  Array [
+    "🦋 New snapshots published!",
+    3,
+  ],
+  Array [
+    "🦋 New snapshots published!",
+    3,
+  ],
+]
+`;
 
-exports[`command output for yarn: summary 2`] = `"<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>"`;
+exports[`command output for yarn: summary 2`] = `
+Array [
+  Array [
+    "<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>",
+    true,
+  ],
+  Array [
+    "<p>Version: <code>@multiple/package-two@1.2.3-SNAPSHOT</code></p>",
+    true,
+  ],
+]
+`;
 
-exports[`command output for yarn: summary 3`] = `"yarn add @multiple/package1@feature_123-branch"`;
+exports[`command output for yarn: summary 3`] = `
+Array [
+  Array [
+    "yarn add @multiple/package1@feature_123-branch",
+  ],
+  Array [
+    "yarn add @multiple/package-two@feature_123-branch",
+  ],
+]
+`;

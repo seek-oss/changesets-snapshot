@@ -65,12 +65,9 @@ test.each(['yarn', 'npm', 'pnpm'])(
     expect(getScriptCalls(runMock)).toMatchSnapshot('run');
     expect(getScriptCalls(runPublishMock)).toMatchSnapshot('runPublish');
     expect(jest.mocked(logger).log.mock.calls[0]).toMatchSnapshot('logger.log');
-    expect(coreMock.summary.addHeading.mock.calls[0][0]).toMatchSnapshot(
-      'summary',
-    );
-    expect(coreMock.summary.addRaw.mock.calls[0][0]).toMatchSnapshot('summary');
-    expect(coreMock.summary.addCodeBlock.mock.calls[0][0]).toMatchSnapshot(
-      'summary',
-    );
+    expect(coreMock.summary.addHeading.mock.calls).toMatchSnapshot('summary');
+    expect(coreMock.summary.addRaw.mock.calls).toMatchSnapshot('summary');
+    expect(coreMock.summary.addCodeBlock.mock.calls).toMatchSnapshot('summary');
+    expect(coreMock.summary.write).toHaveBeenCalled();
   },
 );
