@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.4
+
+### Patch Changes
+
+- Actually do something
+
 ## 0.0.3
 
 ### Patch Changes

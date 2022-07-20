@@ -114,3 +114,6 @@ ${newVersionsList}
 
   // TODO: clean up .npmrc
 };
+
+// eslint-disable-next-line no-void
+void publishSnapshot();
