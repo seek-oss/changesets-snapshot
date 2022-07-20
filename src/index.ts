@@ -93,7 +93,7 @@ export const publishSnapshot = async () => {
     for (const { name, version } of result.publishedPackages) {
       await writeSummary({
         title: `🦋 New ${pkgNoun} published!`,
-        message: `Version: \`${name}@${version}\``,
+        message: `Version: <code>${name}@${version}</code>`,
         codeBlock: getCommand(packageManager, 'add', [
           `${name}@${cleansedBranchName}`,
         ]),
