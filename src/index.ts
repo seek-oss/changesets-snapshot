@@ -1,10 +1,26 @@
 import * as core from '@actions/core';
-import { exec } from '@actions/exec';
 import * as github from '@actions/github';
 
 import { logger } from './logger';
+import { ensureNpmrc } from './npm-utils';
 import { runPublish } from './run';
 import { execWithOutput } from './utils';
+
+function annotate({
+  title,
+  message,
+  codeBlock,
+}: {
+  title: string;
+  message: string;
+  codeBlock?: string;
+}) {
+  core.summary.addHeading(title, 3);
+  core.summary.addRaw(message);
+  if (codeBlock) {
+    core.summary.addCodeBlock(codeBlock);
+  }
+}
 
 export const publishSnapshot = async () => {
   const githubToken = process.env.GITHUB_TOKEN;
@@ -13,6 +29,15 @@ export const publishSnapshot = async () => {
     core.setFailed('Unable to retrieve GitHub token');
     return;
   }
+
+  const npmToken = process.env.NPM_TOKEN;
+
+  if (!npmToken) {
+    core.setFailed('Unable to retrieve NPM publish token');
+    throw new Error();
+  }
+
+  ensureNpmrc(npmToken);
 
   const branch = github.context.ref.replace('refs/heads/', '');
   const cleansedBranchName = branch.replace(/\//g, '_');
@@ -36,16 +61,16 @@ export const publishSnapshot = async () => {
       '\nNo changesets found. In order to publish a snapshot version, you must have at least one changeset committed.\n',
     );
 
-    await exec('buildkite-agent', [
-      'annotate',
-      '--style',
-      'warning',
-      'No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.',
-    ]);
+    annotate({
+      title: '⚠️ No snapshot published',
+      message:
+        'No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.',
+    });
 
     return;
   }
 
+  // TODO: pnpm
   const result = await runPublish({
     script: `yarn changeset publish --tag ${cleansedBranchName}`,
   });
@@ -55,18 +80,11 @@ export const publishSnapshot = async () => {
       result.publishedPackages.length === 1 ? 'snapshot' : 'snapshots';
 
     for (const { name, version } of result.publishedPackages) {
-      const codeblock = [
-        '```',
-        `yarn add ${name}@${cleansedBranchName}`,
-        '```',
-      ].join('\n');
-
-      await exec('buildkite-agent', [
-        'annotate',
-        '--style',
-        'info',
-        `Snapshot published: \`${name}@${version}\`\n${codeblock}`,
-      ]);
+      annotate({
+        title: '🦋 New snapshot published!',
+        message: `Version: \`${name}@${version}\``,
+        codeBlock: `yarn add ${name}@${cleansedBranchName}`,
+      });
     }
 
     const newVersionsList = result.publishedPackages
