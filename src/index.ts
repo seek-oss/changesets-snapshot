@@ -4,10 +4,10 @@ import { detect, getCommand } from '@antfu/ni';
 import resolveFrom from 'resolve-from';
 
 import { logger } from './logger';
-import { ensureNpmrc } from './npm-utils';
+import { ensureNpmrc, removeNpmrc } from './npm-utils';
 import { run, runPublish } from './run';
 
-async function writeSummary({
+const writeSummary = async ({
   title,
   message,
   codeBlock,
@@ -15,14 +15,14 @@ async function writeSummary({
   title: string;
   message: string;
   codeBlock?: string;
-}) {
+}) => {
   core.summary.addHeading(title, 3);
   core.summary.addRaw(`<p>${message}</p>`, true);
   if (codeBlock) {
     core.summary.addCodeBlock(codeBlock);
   }
   await core.summary.write();
-}
+};
 
 export const publishSnapshot = async () => {
   core.setOutput('published', false);
@@ -114,7 +114,7 @@ ${newVersionsList}
     );
   }
 
-  // TODO: clean up .npmrc
+  removeNpmrc();
 };
 
 // eslint-disable-next-line no-void

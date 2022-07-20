@@ -3,9 +3,9 @@ import fs from 'fs';
 
 import { logger } from './logger';
 
-export const ensureNpmrc = (npmToken: string) => {
-  const userNpmrcPath = './.npmrc';
+const userNpmrcPath = './.npmrc';
 
+export const ensureNpmrc = (npmToken: string) => {
   if (fs.existsSync(userNpmrcPath)) {
     logger.log('Found existing user .npmrc file. Overwriting.');
   } else {
@@ -20,4 +20,8 @@ export const ensureNpmrc = (npmToken: string) => {
   logger.log(`.npmrc file written to ${userNpmrcPath}\n`);
 };
 
-// TODO: clean up .npmrc
+export const removeNpmrc = () => {
+  fs.rmSync(userNpmrcPath);
+
+  logger.log('.npmrc file cleaned up\n');
+};
