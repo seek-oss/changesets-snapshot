@@ -24,6 +24,9 @@ function annotate({
 }
 
 export const publishSnapshot = async () => {
+  core.setOutput('published', false);
+  core.setOutput('publishedPackages', []);
+
   const githubToken = process.env.GITHUB_TOKEN;
 
   if (!githubToken) {
@@ -58,7 +61,9 @@ export const publishSnapshot = async () => {
 
   // Run the snapshot version
   const versionResult = await run({
-    script: getCommand(packageManager, 'agent', [`changeset version --snapshot ${cleansedBranchName}`])
+    script: getCommand(packageManager, 'agent', [
+      `changeset version --snapshot ${cleansedBranchName}`,
+    ]),
   });
 
   if (versionResult.stderr.indexOf('No unreleased changesets found') > 0) {
@@ -81,7 +86,11 @@ export const publishSnapshot = async () => {
     ]),
   });
 
+  core.setOutput('published', result.published);
+
   if (result.published) {
+    core.setOutput('publishedPackages', result.publishedPackages);
+
     const pkgNoun =
       result.publishedPackages.length === 1 ? 'snapshot' : 'snapshots';
 

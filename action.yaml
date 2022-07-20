@@ -5,14 +5,14 @@ runs:
   main: 'dist/index.js'
 inputs:
   pre-publish:
-    description: 'The command to use to build and publish packages'
+    description: 'The command to run prior to the main publish script'
     required: false
   pre-version:
-    description: 'The command to update version, edit CHANGELOG, read and delete changesets. Default to `changeset version` if not provided'
+    description: 'The command to run prior to the main version script'
     required: false
 outputs:
   published:
-    description: A boolean value to indicate whether a publishing is happened or not
+    description: A boolean value to indicate whether a publishing has happened or not
   publishedPackages:
     description: >
       A JSON array to present the published packages. The format is `[{"name": "@xx/xx", "version": "1.2.0"}, {"name": "@xx/xy", "version": "0.8.9"}]`
