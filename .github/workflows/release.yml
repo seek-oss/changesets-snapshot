@@ -3,7 +3,6 @@ name: Release
 on:
   push:
     branches:
-      - beta
       - master
 
 permissions: {}
@@ -31,9 +30,10 @@ jobs:
       - name: Build
         run: yarn build
 
-      # Don't run publish until we're ready for it
-      # - name: Publish action
-      #   run: yarn release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NPM_TOKEN: ${{ secrets.SEEK_OSS_CI_NPM_TOKEN }}
+      - name: Publish action
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: yarn release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

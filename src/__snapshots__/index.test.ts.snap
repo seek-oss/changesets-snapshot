@@ -10,13 +10,13 @@ Array [
 
 exports[`command output for npm: run 1`] = `
 Array [
-  "npm changeset version --snapshot feature_123-branch",
+  "changeset version --snapshot feature_123-branch",
 ]
 `;
 
 exports[`command output for npm: runPublish 1`] = `
 Array [
-  "npx changeset publish --tag feature_123-branch",
+  "changeset publish --tag feature_123-branch",
 ]
 `;
 
@@ -36,13 +36,13 @@ Array [
 
 exports[`command output for pnpm: run 1`] = `
 Array [
-  "pnpm changeset version --snapshot feature_123-branch",
+  "changeset version --snapshot feature_123-branch",
 ]
 `;
 
 exports[`command output for pnpm: runPublish 1`] = `
 Array [
-  "pnpm dlx changeset publish --tag feature_123-branch",
+  "changeset publish --tag feature_123-branch",
 ]
 `;
 
@@ -62,13 +62,13 @@ Array [
 
 exports[`command output for yarn: run 1`] = `
 Array [
-  "yarn changeset version --snapshot feature_123-branch",
+  "changeset version --snapshot feature_123-branch",
 ]
 `;
 
 exports[`command output for yarn: runPublish 1`] = `
 Array [
-  "yarn dlx changeset publish --tag feature_123-branch",
+  "changeset publish --tag feature_123-branch",
 ]
 `;
 

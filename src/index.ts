@@ -61,9 +61,7 @@ export const publishSnapshot = async () => {
 
   // Run the snapshot version
   const versionResult = await run({
-    script: getCommand(packageManager, 'agent', [
-      `changeset version --snapshot ${cleansedBranchName}`,
-    ]),
+    script: `changeset version --snapshot ${cleansedBranchName}`,
   });
 
   if (versionResult.stderr.indexOf('No unreleased changesets found') > 0) {
@@ -81,9 +79,7 @@ export const publishSnapshot = async () => {
   }
 
   const result = await runPublish({
-    script: getCommand(packageManager, 'execute', [
-      `changeset publish --tag ${cleansedBranchName}`,
-    ]),
+    script: `changeset publish --tag ${cleansedBranchName}`,
   });
 
   core.setOutput('published', result.published);

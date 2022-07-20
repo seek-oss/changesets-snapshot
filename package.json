@@ -8,7 +8,6 @@
     "build": "tsup",
     "format": "skuba format",
     "lint": "skuba lint",
-    "bump": "node ./scripts/bump.mjs",
     "release": "node ./scripts/release.mjs",
     "test": "skuba test",
     "test:ci": "skuba test --coverage",
