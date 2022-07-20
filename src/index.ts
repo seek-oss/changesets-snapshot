@@ -7,7 +7,7 @@ import { ensureNpmrc } from './npm-utils';
 import { run, runPublish } from './run';
 import { execWithOutput } from './utils';
 
-function annotate({
+async function writeSummary({
   title,
   message,
   codeBlock,
@@ -16,11 +16,11 @@ function annotate({
   message: string;
   codeBlock?: string;
 }) {
-  core.summary.addHeading(title, 3);
-  core.summary.addRaw(message);
+  core.summary.addHeading(title, 3).addRaw(message);
   if (codeBlock) {
     core.summary.addCodeBlock(codeBlock);
   }
+  await core.summary.write();
 }
 
 export const publishSnapshot = async () => {
@@ -69,7 +69,7 @@ export const publishSnapshot = async () => {
       '\nNo changesets found. In order to publish a snapshot version, you must have at least one changeset committed.\n',
     );
 
-    annotate({
+    await writeSummary({
       title: '⚠️ No snapshot published',
       message:
         'No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.',
@@ -91,7 +91,7 @@ export const publishSnapshot = async () => {
       result.publishedPackages.length === 1 ? 'snapshot' : 'snapshots';
 
     for (const { name, version } of result.publishedPackages) {
-      annotate({
+      await writeSummary({
         title: `🦋 New ${pkgNoun} published!`,
         message: `Version: \`${name}@${version}\``,
         codeBlock: getCommand(packageManager, 'add', [
