@@ -1,12 +1,15 @@
 /* eslint-disable no-console */
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 import { exec, getExecOutput } from '@actions/exec';
 
-import { version } from '../package.json' assert { type: 'json' };
+import pkg from '../package.json' assert { type: 'json' };
 
-const tag = `v${version}`;
-const releaseLine = `v${version.split('.')[0]}`;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const releaseLine = `v${pkg.version.split('.')[0]}`;
+const tag = `v${pkg.version}`;
 
 process.chdir(path.join(__dirname, '..'));
 
