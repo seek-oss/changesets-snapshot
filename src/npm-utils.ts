@@ -19,3 +19,5 @@ export const ensureNpmrc = (npmToken: string) => {
 
   logger.log(`.npmrc file written to ${userNpmrcPath}\n`);
 };
+
+// TODO: clean up .npmrc

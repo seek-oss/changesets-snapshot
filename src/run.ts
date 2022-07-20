@@ -3,7 +3,7 @@ import { Package, getPackages } from '@manypkg/get-packages';
 
 import { execWithOutput } from './utils';
 
-type PublishOptions = {
+type RunOptions = {
   script: string;
   cwd?: string;
 };
@@ -14,23 +14,23 @@ type PublishResult =
   | { published: true; publishedPackages: PublishedPackage[] }
   | { published: false };
 
+export const run = async ({ script, cwd = process.cwd() }: RunOptions) => {
+  const [runCommand, ...runArgs] = script.split(/\s+/);
+
+  return execWithOutput(runCommand, runArgs, { cwd });
+};
+
 export const runPublish = async ({
   script,
   cwd = process.cwd(),
-}: PublishOptions): Promise<PublishResult> => {
+}: RunOptions): Promise<PublishResult> => {
   const prepublishScript = core.getInput('pre-publish');
 
   if (prepublishScript) {
     await execWithOutput(prepublishScript);
   }
 
-  const [publishCommand, ...publishArgs] = script.split(/\s+/);
-
-  const changesetPublishOutput = await execWithOutput(
-    publishCommand,
-    publishArgs,
-    { cwd },
-  );
+  const changesetPublishOutput = await run({ script, cwd });
 
   const { packages, tool } = await getPackages(cwd);
   const releasedPackages: Package[] = [];

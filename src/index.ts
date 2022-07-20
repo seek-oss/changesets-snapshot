@@ -1,9 +1,10 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { detect, getCommand } from '@antfu/ni';
 
 import { logger } from './logger';
 import { ensureNpmrc } from './npm-utils';
-import { runPublish } from './run';
+import { run, runPublish } from './run';
 import { execWithOutput } from './utils';
 
 function annotate({
@@ -48,13 +49,17 @@ export const publishSnapshot = async () => {
     await execWithOutput(preVersionScript);
   }
 
+  const packageManager = await detect({ cwd: process.cwd() });
+
+  if (!packageManager) {
+    core.setFailed('Unable to detect package manager');
+    throw new Error();
+  }
+
   // Run the snapshot version
-  const versionResult = await execWithOutput('yarn', [
-    'changeset',
-    'version',
-    '--snapshot',
-    cleansedBranchName,
-  ]);
+  const versionResult = await run({
+    script: getCommand(packageManager, 'agent', [`changeset version --snapshot ${cleansedBranchName}`])
+  });
 
   if (versionResult.stderr.indexOf('No unreleased changesets found') > 0) {
     logger.log(
@@ -70,9 +75,10 @@ export const publishSnapshot = async () => {
     return;
   }
 
-  // TODO: pnpm
   const result = await runPublish({
-    script: `yarn changeset publish --tag ${cleansedBranchName}`,
+    script: getCommand(packageManager, 'execute', [
+      `changeset publish --tag ${cleansedBranchName}`,
+    ]),
   });
 
   if (result.published) {
@@ -81,9 +87,11 @@ export const publishSnapshot = async () => {
 
     for (const { name, version } of result.publishedPackages) {
       annotate({
-        title: '🦋 New snapshot published!',
+        title: `🦋 New ${pkgNoun} published!`,
         message: `Version: \`${name}@${version}\``,
-        codeBlock: `yarn add ${name}@${cleansedBranchName}`,
+        codeBlock: getCommand(packageManager, 'add', [
+          `${name}@${cleansedBranchName}`,
+        ]),
       });
     }
 
@@ -93,9 +101,11 @@ export const publishSnapshot = async () => {
 
     logger.log(
       `
-  ${result.publishedPackages.length} ${pkgNoun} published.
-  ${newVersionsList}
+${result.publishedPackages.length} ${pkgNoun} published.
+${newVersionsList}
 `.trim(),
     );
   }
+
+  // TODO: clean up .npmrc
 };
