@@ -21,7 +21,7 @@ if (exitCode === 0) {
   console.log(
     `Action is not being published because version ${tag} is already published`,
   );
-  return;
+  process.exit(exitCode); // eslint-disable-line no-process-exit
 }
 if (exitCode !== 2) {
   throw new Error(`git ls-remote exited with ${exitCode}:\n${stderr}`);
