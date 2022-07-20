@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.5
+
+### Patch Changes
+
+- Test with pnpm
+
 ## 0.0.4
 
 ### Patch Changes
