@@ -16,7 +16,8 @@ async function writeSummary({
   message: string;
   codeBlock?: string;
 }) {
-  core.summary.addHeading(title, 3).addRaw(message);
+  core.summary.addHeading(title, 3)
+  core.summary.addRaw(`<p>${message}</p>`, true);
   if (codeBlock) {
     core.summary.addCodeBlock(codeBlock);
   }

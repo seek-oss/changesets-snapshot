@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.8
+
+### Patch Changes
+
+- Prettify action summary
+
 ## 0.0.7
 
 ### Patch Changes
