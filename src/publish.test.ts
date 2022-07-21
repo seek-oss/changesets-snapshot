@@ -4,9 +4,8 @@ import { detect } from '@antfu/ni';
 import resolveFrom from 'resolve-from';
 
 import { logger } from './logger';
+import { publishSnapshot } from './publish';
 import { run, runPublish } from './run';
-
-import { publishSnapshot } from '.';
 
 jest.mock('@actions/github');
 jest.mock('@actions/core');
@@ -22,10 +21,22 @@ jest.mock('./logger');
 const runMock = jest.mocked(run);
 const runPublishMock = jest.mocked(runPublish);
 const coreMock = jest.mocked(core, true);
+const detectMock = jest.mocked(detect);
 
 const getScriptCalls = <T extends jest.MockableFunction>(
   mockedFn: jest.MockedFn<T>,
 ) => mockedFn.mock.calls.map((args) => args[0].script);
+const expectSummary = () => {
+  expect(coreMock.summary.addHeading.mock.calls).toMatchSnapshot('summary');
+  expect(coreMock.summary.addRaw.mock.calls).toMatchSnapshot('summary');
+  expect(coreMock.summary.addCodeBlock.mock.calls).toMatchSnapshot('summary');
+  expect(coreMock.summary.write).toHaveBeenCalled();
+};
+
+beforeEach(() => {
+  process.env.GITHUB_TOKEN = '';
+  process.env.NPM_TOKEN = '';
+});
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -49,11 +60,9 @@ test.each(['yarn', 'npm', 'pnpm'])(
         { name: '@multiple/package-two', version: '1.2.3-SNAPSHOT' },
       ],
     });
-    jest
-      .mocked(detect)
-      .mockResolvedValueOnce(
-        packageManager as unknown as ReturnType<typeof detect>,
-      );
+    detectMock.mockResolvedValueOnce(
+      packageManager as unknown as ReturnType<typeof detect>,
+    );
     jest
       .mocked(resolveFrom)
       .mockImplementationOnce(
@@ -65,9 +74,51 @@ test.each(['yarn', 'npm', 'pnpm'])(
     expect(getScriptCalls(runMock)).toMatchSnapshot('run');
     expect(getScriptCalls(runPublishMock)).toMatchSnapshot('runPublish');
     expect(jest.mocked(logger).log.mock.calls[0]).toMatchSnapshot('logger.log');
-    expect(coreMock.summary.addHeading.mock.calls).toMatchSnapshot('summary');
-    expect(coreMock.summary.addRaw.mock.calls).toMatchSnapshot('summary');
-    expect(coreMock.summary.addCodeBlock.mock.calls).toMatchSnapshot('summary');
-    expect(coreMock.summary.write).toHaveBeenCalled();
+    expectSummary();
   },
 );
+
+describe('error handling', () => {
+  test('missing NPM token', async () => {
+    process.env.GITHUB_TOKEN = '@github-token';
+
+    await expect(() => publishSnapshot()).rejects.toMatchInlineSnapshot(
+      `[Error: Unable to retrieve NPM publish token]`,
+    );
+
+    expect(coreMock.setFailed.mock.calls[0]).toMatchInlineSnapshot(`
+      Array [
+        "Unable to retrieve NPM publish token",
+      ]
+    `);
+  });
+
+  test('missing GitHub token', async () => {
+    process.env.NPM_TOKEN = '@npm-token';
+
+    await expect(() => publishSnapshot()).rejects.toMatchInlineSnapshot(
+      `[Error: Unable to retrieve GitHub token]`,
+    );
+
+    expect(coreMock.setFailed.mock.calls[0]).toMatchInlineSnapshot(`
+      Array [
+        "Unable to retrieve GitHub token",
+      ]
+    `);
+  });
+
+  test('no changesets found', async () => {
+    process.env.GITHUB_TOKEN = '@github-token';
+    process.env.NPM_TOKEN = '@npm-token';
+    runMock.mockResolvedValueOnce({
+      code: 0,
+      stdout: '',
+      stderr: '\nNo unreleased changesets found\n',
+    });
+    detectMock.mockResolvedValueOnce('yarn');
+
+    await publishSnapshot();
+
+    expectSummary();
+  });
+});

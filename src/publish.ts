@@ -24,6 +24,11 @@ const writeSummary = async ({
   await core.summary.write();
 };
 
+const failure = (reason: string) => {
+  core.setFailed(reason);
+  throw new Error(reason);
+};
+
 export const publishSnapshot = async () => {
   core.setOutput('published', false);
   core.setOutput('publishedPackages', []);
@@ -32,20 +37,17 @@ export const publishSnapshot = async () => {
 
   const githubToken = process.env.GITHUB_TOKEN;
   if (!githubToken) {
-    core.setFailed('Unable to retrieve GitHub token');
-    return;
+    throw failure('Unable to retrieve GitHub token');
   }
 
   const npmToken = process.env.NPM_TOKEN;
   if (!npmToken) {
-    core.setFailed('Unable to retrieve NPM publish token');
-    throw new Error();
+    throw failure('Unable to retrieve NPM publish token');
   }
 
   const packageManager = await detect({ cwd });
   if (!packageManager) {
-    core.setFailed('Unable to detect package manager');
-    throw new Error();
+    throw failure('Unable to detect package manager');
   }
 
   const preVersionScript = core.getInput('pre-version');
@@ -65,7 +67,7 @@ export const publishSnapshot = async () => {
     cwd,
   });
 
-  if (versionResult.stderr.indexOf('No unreleased changesets found') > 0) {
+  if (versionResult.stderr.includes('No unreleased changesets found')) {
     logger.log(
       '\nNo changesets found. In order to publish a snapshot version, you must have at least one changeset committed.\n',
     );
@@ -94,7 +96,7 @@ export const publishSnapshot = async () => {
 
     for (const { name, version } of result.publishedPackages) {
       await writeSummary({
-        title: `🦋 New ${pkgNoun} published!`,
+        title: '🦋 New snapshot published!',
         message: `Version: <code>${name}@${version}</code>`,
         codeBlock: getCommand(packageManager, 'add', [
           `${name}@${cleansedBranchName}`,
@@ -116,6 +118,3 @@ ${newVersionsList}
 
   removeNpmrc();
 };
-
-// eslint-disable-next-line no-void
-void publishSnapshot();

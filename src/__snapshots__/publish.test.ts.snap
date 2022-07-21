@@ -23,11 +23,11 @@ Array [
 exports[`command output for npm: summary 1`] = `
 Array [
   Array [
-    "🦋 New snapshots published!",
+    "🦋 New snapshot published!",
     3,
   ],
   Array [
-    "🦋 New snapshots published!",
+    "🦋 New snapshot published!",
     3,
   ],
 ]
@@ -80,11 +80,11 @@ Array [
 exports[`command output for pnpm: summary 1`] = `
 Array [
   Array [
-    "🦋 New snapshots published!",
+    "🦋 New snapshot published!",
     3,
   ],
   Array [
-    "🦋 New snapshots published!",
+    "🦋 New snapshot published!",
     3,
   ],
 ]
@@ -137,11 +137,11 @@ Array [
 exports[`command output for yarn: summary 1`] = `
 Array [
   Array [
-    "🦋 New snapshots published!",
+    "🦋 New snapshot published!",
     3,
   ],
   Array [
-    "🦋 New snapshots published!",
+    "🦋 New snapshot published!",
     3,
   ],
 ]
@@ -170,3 +170,23 @@ Array [
   ],
 ]
 `;
+
+exports[`error handling no changesets found: summary 1`] = `
+Array [
+  Array [
+    "⚠️ No snapshot published",
+    3,
+  ],
+]
+`;
+
+exports[`error handling no changesets found: summary 2`] = `
+Array [
+  Array [
+    "<p>No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.</p>",
+    true,
+  ],
+]
+`;
+
+exports[`error handling no changesets found: summary 3`] = `Array []`;
