@@ -1,104 +1,97 @@
-# @seek/changesets-snapshot
+# changesets-snapshot
 
-[![Powered by skuba](https://img.shields.io/badge/🤿%20skuba-powered-009DC4)](https://github.com/seek-oss/skuba)
+A GitHub Action for publishing [snapshot releases] when using [changesets].
+
+[snapshot releases]: https://github.com/changesets/changesets/blob/main/docs/snapshot-releases.md
+[changesets]: https://github.com/changesets/changesets
+
+## Why
+
+Changesets publish a [GitHub action] which can be used for the regular changesets flow of Version Packages PR and publishing to NPM.
+
+Unfortunately, this action doesn't support publishing snapshot releases (yet?).
+
+This action _only_ provides snapshot publishing of NPM packages to the npm registry.
+
+[github action]: https://github.com/changesets/action
+
+## Getting Started
+
+To publish snapshot releases for your package, you need to create a workflow that uses the `seek-oss/changesets-snapshot` action.
+
+You probably also want to run this workflow manually, rather than on every push, which means configuring it to respond to the [`workflow_dispatch` event][wde].
+
+You will need to provide an NPM token and a GitHub token to the `env` of the action.
+
+An example workflow might look like:
+
+```yaml
+name: Snapshot
+
+on: workflow_dispatch
+
+jobs:
+  annotate:
+    name: Publish snapshot version
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Publish
+        uses: seek-oss/changesets-snapshot@v0
+        with:
+          pre-publish: yarn build
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+[wde]: https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
 
 ## API
 
-_TODO_
+### Inputs
 
-## Development
+When running the regular changesets action, you can [provide your own scripts][scripts] for `version` and `publish`, which allows you to use custom publishing behaviours instead of the changesets builtin.
 
-### Prerequisites
+This is useful if you are:
 
-- Node.js LTS
-- Yarn 1.x
+- not publishing to the npmjs.com registry or releasing an NPM packge, hence requiring some other publish process
+- or, if there are other processes you need to run in conjunction with versioning/publishing.
 
-```shell
-yarn install
-```
+This action only publishes NPM packages to the npmjs.com registry, but the second point is addressed through the `pre-` inputs.
 
-### Test
+#### `pre-version`
 
-```shell
-yarn test
-```
+You can provide a script here that will run before the `changeset version` command, in case you have any custom versioning requirements that wouldn't be handled by the inbuilt changeset version command.
 
-### Lint
+#### `pre-publish`
 
-```shell
-# Fix issues
-yarn format
+Perhaps more common, the `pre-publish` input can be used for processes you want to run before (and only before) the npm publish occurs.
 
-# Check for issues
-yarn lint
-```
+For example, you might want to use this step to run a build before the publish step runs.
 
-### Package
+[scripts]: https://github.com/changesets/action#inputs
 
-```shell
-# Compile source
-yarn build
+### Outputs
 
-# Review bundle
-npm pack
-```
+The action reports on the outcome of publishing primarily with a notice in the [step summary], but also as action outputs.
 
-## Release
+The action outputs are listed in the [action.yml] file.
 
-This package is published to the public npm registry with a GitHub Actions [release workflow].
-
-The workflow runs on select branches:
-
-```yaml
-on:
-  push:
-    branches:
-      # add others as necessary
-      - beta
-      - master
-      # - alpha
-```
-
-It depends on this repo being hosted on [seek-oss] with appropriate access.
-
-To set up this repo for publishing, follow the instructions in our [OSS npm package guidance].
-
-### Commit messages
-
-This package is published with **[semantic-release]**, which requires a particular commit format to manage semantic versioning.
-You can run the interactive `yarn commit` command in place of `git commit` to generate a compliant commit title and message.
-If you use the `Squash and merge` option on pull requests, take extra care to format the squashed commit in the GitHub UI before merging.
-
-### Releasing latest
-
-Commits to the `master` branch will be released with the `latest` tag,
-which is the default used when running `npm install` or `yarn install`.
-
-### Releasing other dist-tags
-
-**[semantic-release]** prescribes a branch-based workflow for managing [distribution tags].
-
-You can push to other branches to manage betas, maintenance updates to prior major versions, and more.
-
-Here are some branches that **semantic-release** supports by default:
-
-| Git branch | npm dist-tag |
-| :--------- | :----------- |
-| master     | latest       |
-| alpha      | alpha        |
-| beta       | beta         |
-| next       | next         |
-| 1.x        | release-1.x  |
-
-For more information, see the **semantic-release** docs on [triggering a release].
-
-[#open-source]: https://slack.com/app_redirect?channel=C39P1H2SU
-[distribution tags]: https://docs.npmjs.com/adding-dist-tags-to-packages
-[oss npm package guidance]: https://github.com/SEEK-Jobs/seek-oss-ci/blob/master/NPM_PACKAGES.md#access-to-publish-to-npm
-[release workflow]: .github/workflows/release.yml
-[seek-oss]: https://github.com/seek-oss
-[github repository settings]: https://github.com/SEEK-Jobs/changesets-snapshot/settings
-[seek's open source rfc]: https://rfc.skinfra.xyz/RFC016-Open-Source.html
-[renovate]: https://github.com/apps/renovate
-[semantic-release]: https://github.com/semantic-release/semantic-release
-[triggering a release]: https://github.com/semantic-release/semantic-release/#triggering-a-release
+[step summary]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
+[action.yml]: ./action.yml
