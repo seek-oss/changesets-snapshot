@@ -1,3 +1,6 @@
+// Taken from https://github.com/changesets/action/blob/main/scripts/release.js
+// Rationale: https://github.com/changesets/action/pull/118
+
 /* eslint-disable no-console */
 import path from 'path';
 import { fileURLToPath } from 'url';
