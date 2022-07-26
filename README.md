@@ -62,6 +62,16 @@ jobs:
 
 [wde]: https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
 
+### Advanced triggers
+
+Github actions have many options for deciding whether a workflow should be run.
+
+One example of an alternative flow to the manual run is to run the snapshot release when someone comments a specific phrase on a PR.
+[Polaris] has an [implementation] of this for inspiration, which runs when an authorised user comments `/snapit` on a PR.
+
+[polaris]: https://github.com/Shopify/polaris
+[implementation]: https://github.com/Shopify/polaris/blob/8296f4304fdb72dedd17d45bc7db154bf41cc3c4/.github/workflows/snapit.yml#L13-L15
+
 ## API
 
 ### Inputs
