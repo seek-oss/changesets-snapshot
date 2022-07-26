@@ -35,10 +35,7 @@ export const publishSnapshot = async () => {
 
   const cwd = process.cwd();
 
-  const githubToken = process.env.GITHUB_TOKEN;
-  if (!githubToken) {
-    throw failure('Unable to retrieve GitHub token');
-  }
+  process.env.GITHUB_TOKEN = '';
 
   const npmToken = process.env.NPM_TOKEN;
   if (!npmToken) {

@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.10
+
+### Patch Changes
+
+- Try not having a github token
+
 ## 0.0.9
 
 ### Patch Changes
