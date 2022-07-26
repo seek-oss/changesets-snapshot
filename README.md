@@ -31,7 +31,7 @@ name: Snapshot
 on: workflow_dispatch
 
 jobs:
-  annotate:
+  release:
     name: Publish snapshot version
     runs-on: ubuntu-latest
     env:
