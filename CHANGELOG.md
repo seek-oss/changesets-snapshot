@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.11
+
+### Patch Changes
+
+- Try using a fake token instead of an empty string
+
 ## 0.0.10
 
 ### Patch Changes
