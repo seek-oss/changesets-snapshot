@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.12
+
+### Patch Changes
+
+- Reinstate the github token
+
 ## 0.0.11
 
 ### Patch Changes
