@@ -9,11 +9,23 @@ A GitHub Action for publishing [snapshot releases] when using [changesets].
 
 Changesets publish a [GitHub action] which can be used for the regular changesets flow of Version Packages PR and publishing to NPM.
 
-Unfortunately, this action doesn't support publishing snapshot releases (yet?).
-
-This action _only_ provides snapshot publishing of NPM packages to the npm registry.
+Unfortunately, the Changesets action doesn't support publishing snapshot releases (yet?), so this action exists to fill that requirement.
 
 [github action]: https://github.com/changesets/action
+
+### Tradeoffs
+
+In order to set up the proper arguments/config for snapshot publishing, this action calls `changeset version` and `changeset publish` internally.
+
+This means that, unlike the Changesets action, these commands cannot be overridden entirely.
+You can [provide extra scripts] that you want to run ahead of each of the version and publish commands, but the changeset commands will still run as well.
+
+Practically, this means:
+
+- **This action can only publish NPM packages**. `changeset publish` eventually calls `npm publish`, so a project that isn't published with `npm` won't be able to use this snapshot action.
+- **This action can only publish to the npmjs.com registry**. To ensure auth is set up correctly, this action will overwrite any existing `.npmrc` files. This means that alternate registry information will be lost (e.g. for publishing to GitHub Packages). We're open to this being a feature though, so create an issue if this is a part of the workflow that you need.
+
+[provide extra scripts]: #inputs
 
 ## Getting Started
 
@@ -91,7 +103,7 @@ You can provide a script here that will run before the `changeset version` comma
 
 #### `pre-publish`
 
-Perhaps more common, the `pre-publish` input can be used for processes you want to run before (and only before) the npm publish occurs.
+Perhaps more common, the `pre-publish` input can be used for processes you want to run before (and only before) the `changeset publish` occurs.
 
 For example, you might want to use this step to run a build before the publish step runs.
 
