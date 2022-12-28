@@ -20,7 +20,7 @@ jest.mock('./logger');
 
 const runMock = jest.mocked(run);
 const runPublishMock = jest.mocked(runPublish);
-const coreMock = jest.mocked(core, true);
+const coreMock = jest.mocked(core);
 const detectMock = jest.mocked(detect);
 
 const getScriptCalls = <T extends jest.MockableFunction>(
@@ -87,7 +87,7 @@ describe('error handling', () => {
     );
 
     expect(coreMock.setFailed.mock.calls[0]).toMatchInlineSnapshot(`
-      Array [
+      [
         "Unable to retrieve NPM publish token",
       ]
     `);
@@ -101,7 +101,7 @@ describe('error handling', () => {
     );
 
     expect(coreMock.setFailed.mock.calls[0]).toMatchInlineSnapshot(`
-      Array [
+      [
         "Unable to retrieve GitHub token",
       ]
     `);

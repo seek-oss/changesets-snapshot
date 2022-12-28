@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`command output for npm: logger.log 1`] = `
-Array [
+[
   "2 snapshots published.
 - @multiple/package1@1.2.3-SNAPSHOT
 - @multiple/package-two@1.2.3-SNAPSHOT",
@@ -9,24 +9,24 @@ Array [
 `;
 
 exports[`command output for npm: run 1`] = `
-Array [
+[
   "node /__mocked_node_modules__/@changesets/cli/bin.js version --snapshot feature_123-branch",
 ]
 `;
 
 exports[`command output for npm: runPublish 1`] = `
-Array [
+[
   "node /__mocked_node_modules__/@changesets/cli/bin.js publish --tag feature_123-branch",
 ]
 `;
 
 exports[`command output for npm: summary 1`] = `
-Array [
-  Array [
+[
+  [
     "🦋 New snapshot published!",
     3,
   ],
-  Array [
+  [
     "🦋 New snapshot published!",
     3,
   ],
@@ -34,12 +34,12 @@ Array [
 `;
 
 exports[`command output for npm: summary 2`] = `
-Array [
-  Array [
+[
+  [
     "<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>",
     true,
   ],
-  Array [
+  [
     "<p>Version: <code>@multiple/package-two@1.2.3-SNAPSHOT</code></p>",
     true,
   ],
@@ -47,18 +47,18 @@ Array [
 `;
 
 exports[`command output for npm: summary 3`] = `
-Array [
-  Array [
+[
+  [
     "npm i @multiple/package1@feature_123-branch",
   ],
-  Array [
+  [
     "npm i @multiple/package-two@feature_123-branch",
   ],
 ]
 `;
 
 exports[`command output for pnpm: logger.log 1`] = `
-Array [
+[
   "2 snapshots published.
 - @multiple/package1@1.2.3-SNAPSHOT
 - @multiple/package-two@1.2.3-SNAPSHOT",
@@ -66,24 +66,24 @@ Array [
 `;
 
 exports[`command output for pnpm: run 1`] = `
-Array [
+[
   "node /__mocked_node_modules__/@changesets/cli/bin.js version --snapshot feature_123-branch",
 ]
 `;
 
 exports[`command output for pnpm: runPublish 1`] = `
-Array [
+[
   "node /__mocked_node_modules__/@changesets/cli/bin.js publish --tag feature_123-branch",
 ]
 `;
 
 exports[`command output for pnpm: summary 1`] = `
-Array [
-  Array [
+[
+  [
     "🦋 New snapshot published!",
     3,
   ],
-  Array [
+  [
     "🦋 New snapshot published!",
     3,
   ],
@@ -91,12 +91,12 @@ Array [
 `;
 
 exports[`command output for pnpm: summary 2`] = `
-Array [
-  Array [
+[
+  [
     "<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>",
     true,
   ],
-  Array [
+  [
     "<p>Version: <code>@multiple/package-two@1.2.3-SNAPSHOT</code></p>",
     true,
   ],
@@ -104,18 +104,18 @@ Array [
 `;
 
 exports[`command output for pnpm: summary 3`] = `
-Array [
-  Array [
+[
+  [
     "pnpm add @multiple/package1@feature_123-branch",
   ],
-  Array [
+  [
     "pnpm add @multiple/package-two@feature_123-branch",
   ],
 ]
 `;
 
 exports[`command output for yarn: logger.log 1`] = `
-Array [
+[
   "2 snapshots published.
 - @multiple/package1@1.2.3-SNAPSHOT
 - @multiple/package-two@1.2.3-SNAPSHOT",
@@ -123,24 +123,24 @@ Array [
 `;
 
 exports[`command output for yarn: run 1`] = `
-Array [
+[
   "node /__mocked_node_modules__/@changesets/cli/bin.js version --snapshot feature_123-branch",
 ]
 `;
 
 exports[`command output for yarn: runPublish 1`] = `
-Array [
+[
   "node /__mocked_node_modules__/@changesets/cli/bin.js publish --tag feature_123-branch",
 ]
 `;
 
 exports[`command output for yarn: summary 1`] = `
-Array [
-  Array [
+[
+  [
     "🦋 New snapshot published!",
     3,
   ],
-  Array [
+  [
     "🦋 New snapshot published!",
     3,
   ],
@@ -148,12 +148,12 @@ Array [
 `;
 
 exports[`command output for yarn: summary 2`] = `
-Array [
-  Array [
+[
+  [
     "<p>Version: <code>@multiple/package1@1.2.3-SNAPSHOT</code></p>",
     true,
   ],
-  Array [
+  [
     "<p>Version: <code>@multiple/package-two@1.2.3-SNAPSHOT</code></p>",
     true,
   ],
@@ -161,19 +161,19 @@ Array [
 `;
 
 exports[`command output for yarn: summary 3`] = `
-Array [
-  Array [
+[
+  [
     "yarn add @multiple/package1@feature_123-branch",
   ],
-  Array [
+  [
     "yarn add @multiple/package-two@feature_123-branch",
   ],
 ]
 `;
 
 exports[`error handling no changesets found: summary 1`] = `
-Array [
-  Array [
+[
+  [
     "⚠️ No snapshot published",
     3,
   ],
@@ -181,12 +181,12 @@ Array [
 `;
 
 exports[`error handling no changesets found: summary 2`] = `
-Array [
-  Array [
+[
+  [
     "<p>No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.</p>",
     true,
   ],
 ]
 `;
 
-exports[`error handling no changesets found: summary 3`] = `Array []`;
+exports[`error handling no changesets found: summary 3`] = `[]`;
