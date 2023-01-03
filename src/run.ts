@@ -51,7 +51,7 @@ export const runPublish = async ({
       if (pkg === undefined) {
         throw new Error(
           `Package "${pkgName}" not found.` +
-            'This is probably a bug in the action, please open an issue',
+            ' This is probably a bug in the action, please open an issue',
         );
       }
       releasedPackages.push(pkg);
@@ -60,7 +60,7 @@ export const runPublish = async ({
     if (packages.length === 0) {
       throw new Error(
         'No package found.' +
-          'This is probably a bug in the action, please open an issue',
+          ' This is probably a bug in the action, please open an issue',
       );
     }
     const pkg = packages[0];
