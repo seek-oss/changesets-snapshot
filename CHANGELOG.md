@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.0.13
+
+### Patch Changes
+
+- [#5](https://github.com/seek-oss/changesets-snapshot/pull/5) [`aafed62`](https://github.com/seek-oss/changesets-snapshot/commit/aafed629091c7cd98fafd7dc3ccf6920cbf07203) Thanks [@mrm007](https://github.com/mrm007)! - Upgrade dependencies
+
 ## 0.0.12
 
 ### Patch Changes
