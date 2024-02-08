@@ -17,18 +17,18 @@
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@antfu/ni": "^0.18.8",
+    "@antfu/ni": "^0.21.12",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.0",
     "@manypkg/get-packages": "^1.1.3",
-    "@types/node": "^16.18.11",
+    "@types/node": "^20.11.16",
     "prettier": "^2.8.1",
     "resolve-from": "^5.0.0",
     "skuba": "5.1.0",
-    "tsup": "^6.5.0"
+    "tsup": "^8.0.1"
   },
   "volta": {
-    "node": "16.19.0",
+    "node": "20.11.0",
     "yarn": "1.22.19"
   },
   "skuba": {

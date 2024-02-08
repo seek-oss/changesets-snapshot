@@ -1,7 +1,7 @@
 name: Changesets Snapshot
 description: A GitHub action to publish snapshot releases with Changesets
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 inputs:
   pre-publish:
