@@ -58,7 +58,7 @@ export const publishSnapshot = async () => {
   ensureNpmrc(npmToken);
 
   const branch = github.context.ref.replace('refs/heads/', '');
-  const cleansedBranchName = branch.replace(/\//g, '_');
+  const cleansedBranchName = branch.replace(/\//g, '-');
   const changesetsCli = resolveFrom(cwd, '@changesets/cli/bin.js');
 
   // Run the snapshot version
