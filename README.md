@@ -55,10 +55,10 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set up Node.js 16.x
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 20.x
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
