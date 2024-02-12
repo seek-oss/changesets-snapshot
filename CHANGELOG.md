@@ -1,5 +1,13 @@
 # changesets-snapshot
 
+## 0.0.14
+
+### Patch Changes
+
+- [#10](https://github.com/seek-oss/changesets-snapshot/pull/10) [`6630c9f`](https://github.com/seek-oss/changesets-snapshot/commit/6630c9fc348e184f3ee89d254e54ff30d3ea7ded) Thanks [@apkostka](https://github.com/apkostka)! - Fix publish to use semver-compatible version names
+
+- [#12](https://github.com/seek-oss/changesets-snapshot/pull/12) [`e8aa1c7`](https://github.com/seek-oss/changesets-snapshot/commit/e8aa1c77f9624b7c06d4de29d8757d0f1c9024a5) Thanks [@askoufis](https://github.com/askoufis)! - Run action using Node v20
+
 ## 0.0.13
 
 ### Patch Changes
