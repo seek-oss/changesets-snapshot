@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { Package, getPackages } from '@manypkg/get-packages';
+import { type Package, getPackages } from '@manypkg/get-packages';
 
 import { execWithOutput } from './utils';
 
@@ -16,6 +16,10 @@ type PublishResult =
 
 export const run = async ({ script, cwd = process.cwd() }: RunOptions) => {
   const [runCommand, ...runArgs] = script.split(/\s+/);
+
+  if (!runCommand) {
+    throw new Error(`Error running script "${script}". No command found.`);
+  }
 
   return execWithOutput(runCommand, runArgs, { cwd });
 };
@@ -43,10 +47,12 @@ export const runPublish = async ({
 
     for (const line of changesetPublishOutput.stdout.split('\n')) {
       const match = line.match(newTagRegex);
-      if (match === null) {
+      if (!match?.[1]) {
         continue;
       }
+
       const pkgName = match[1];
+
       const pkg = packagesByName.get(pkgName);
       if (pkg === undefined) {
         throw new Error(
@@ -54,10 +60,11 @@ export const runPublish = async ({
             ' This is probably a bug in the action, please open an issue',
         );
       }
+
       releasedPackages.push(pkg);
     }
   } else {
-    if (packages.length === 0) {
+    if (packages.length === 0 || !packages[0]) {
       throw new Error(
         'No package found.' +
           ' This is probably a bug in the action, please open an issue',

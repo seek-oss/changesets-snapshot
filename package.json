@@ -35,6 +35,6 @@
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "4.3.0"
+    "version": "7.5.0"
   }
 }

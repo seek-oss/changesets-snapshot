@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 
 import { exec, getExecOutput } from '@actions/exec';
 
-import pkg from '../package.json' assert { type: 'json' };
+import pkg from '../package.json';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
