@@ -29,7 +29,7 @@
   },
   "volta": {
     "node": "20.11.0",
-    "yarn": "1.22.19"
+    "yarn": "1.22.21"
   },
   "skuba": {
     "entryPoint": "src/index.ts",
