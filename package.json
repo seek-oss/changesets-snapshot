@@ -24,7 +24,7 @@
     "@types/node": "^20.11.16",
     "prettier": "^2.8.1",
     "resolve-from": "^5.0.0",
-    "skuba": "5.1.1",
+    "skuba": "7.5.0",
     "tsup": "^8.0.1"
   },
   "volta": {
@@ -35,6 +35,6 @@
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "4.3.0"
+    "version": "7.5.0"
   }
 }
