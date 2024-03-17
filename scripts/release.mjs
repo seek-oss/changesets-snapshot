@@ -2,17 +2,20 @@
 // Rationale: https://github.com/changesets/action/pull/118
 
 /* eslint-disable no-console */
+import { readFile } from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { exec, getExecOutput } from '@actions/exec';
 
-import pkg from '../package.json';
+// Would ideally import `package.json` with an import attribute, but ESLint only supports it
+// experimentally and I can't even find how to enable support for it
+const packageJson = JSON.parse(await readFile('../package.json', 'utf-8'));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const releaseLine = `v${pkg.version.split('.')[0]}`;
-const tag = `v${pkg.version}`;
+const releaseLine = `v${packageJson.version.split('.')[0]}`;
+const tag = `v${packageJson.version}`;
 
 process.chdir(path.join(__dirname, '..'));
 
