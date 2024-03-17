@@ -39,7 +39,7 @@ export const runPublish = async ({
   const { packages, tool } = await getPackages(cwd);
   const releasedPackages: Package[] = [];
 
-  if (tool !== 'root') {
+  if (tool.type !== 'root') {
     const newTagRegex = /New tag:\s+(@[^/]+\/[^@]+|[^/]+)@([^\s]+)/;
     const packagesByName = new Map(
       packages.map((x) => [x.packageJson.name, x]),
