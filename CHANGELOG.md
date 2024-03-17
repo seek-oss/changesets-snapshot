@@ -1,5 +1,16 @@
 # changesets-snapshot
 
+## 0.1.0
+
+### Minor Changes
+
+- [#21](https://github.com/seek-oss/changesets-snapshot/pull/21) [`b1ce004`](https://github.com/seek-oss/changesets-snapshot/commit/b1ce004cd0743fb67c9d150b708f189330035062) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@actions/github` dependency to `^6.0.0`. Drop support for Node.js <18.
+
+### Patch Changes
+
+- [#21](https://github.com/seek-oss/changesets-snapshot/pull/21) [`b1ce004`](https://github.com/seek-oss/changesets-snapshot/commit/b1ce004cd0743fb67c9d150b708f189330035062) Thanks [@renovate](https://github.com/apps/renovate)! - Update `@manypkg/get-packages` dependency to `^2.0.0`.
+  Update `@antfu/ni` dependency to `^0.21.0`.
+
 ## 0.0.14
 
 ### Patch Changes
