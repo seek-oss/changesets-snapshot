@@ -10,7 +10,7 @@ import { exec, getExecOutput } from '@actions/exec';
 
 // Would ideally import `package.json` with an import attribute, but ESLint only supports it
 // experimentally and I can't even find how to enable support for it
-const packageJson = JSON.parse(await readFile('../package.json', 'utf-8'));
+const packageJson = JSON.parse(await readFile('package.json', 'utf-8'));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
