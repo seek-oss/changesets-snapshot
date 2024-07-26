@@ -24,7 +24,7 @@
     "@types/node": "^20.11.16",
     "prettier": "^3.0.0",
     "resolve-from": "^5.0.0",
-    "skuba": "8.0.1",
+    "skuba": "8.2.0",
     "tsup": "^8.0.1"
   },
   "volta": {
