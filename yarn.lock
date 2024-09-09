@@ -48,10 +48,10 @@
     "@jridgewell/gen-mapping" "^0.3.5"
     "@jridgewell/trace-mapping" "^0.3.24"
 
-"@antfu/ni@^0.22.0":
-  version "0.22.1"
-  resolved "https://registry.yarnpkg.com/@antfu/ni/-/ni-0.22.1.tgz#b15125b5839cafd021167185150425d3031dff45"
-  integrity sha512-5STu7QHsLYWpt+K/+zRcMOIUnG51lOhnqPInImXGyC6PMHtkrZQjbqZ/R3GW8XdTYOnKiT77+R09Tl4fzuFK5w==
+"@antfu/ni@^0.23.0":
+  version "0.23.0"
+  resolved "https://registry.yarnpkg.com/@antfu/ni/-/ni-0.23.0.tgz#5f52055865963d5aa06dd759da43e82bbd670ca1"
+  integrity sha512-R5/GkA3PfGewAXLzz6lN5XagunF6PKeDtWt8dbZQXvHfebLS0qEczV+Azg/d+tKgSh6kRBpxvu8oSjARdPtw0A==
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.22.13", "@babel/code-frame@^7.24.7":
   version "7.24.7"
