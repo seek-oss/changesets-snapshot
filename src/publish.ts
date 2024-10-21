@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { detect, getCommand } from '@antfu/ni';
+import { resolveCommand } from 'package-manager-detector/commands';
+import { detect } from 'package-manager-detector/detect';
 import resolveFrom from 'resolve-from';
 
 import { logger } from './logger';
@@ -45,10 +46,12 @@ export const publishSnapshot = async () => {
     throw failure('Unable to retrieve NPM publish token');
   }
 
-  const packageManager = await detect({ cwd });
-  if (!packageManager) {
+  const detectResult = await detect({ cwd });
+  if (!detectResult) {
     throw failure('Unable to detect package manager');
   }
+
+  const { name: packageManager } = detectResult;
 
   const preVersionScript = core.getInput('pre-version');
   if (preVersionScript) {
@@ -95,12 +98,20 @@ export const publishSnapshot = async () => {
       result.publishedPackages.length === 1 ? 'snapshot' : 'snapshots';
 
     for (const { name, version } of result.publishedPackages) {
+      const resolvedCommand = resolveCommand(packageManager, 'add', [
+        `${name}@${cleansedBranchName}`,
+      ]);
+
+      if (!resolvedCommand) {
+        throw new Error('Failed to resolve command');
+      }
+
+      const { command, args } = resolvedCommand;
+
       await writeSummary({
         title: '🦋 New snapshot published!',
         message: `Version: <code>${name}@${version}</code>`,
-        codeBlock: getCommand(packageManager, 'add', [
-          `${name}@${cleansedBranchName}`,
-        ]),
+        codeBlock: `${command} ${args.join(' ')}`,
       });
     }
 
