@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.1.1
+
+### Patch Changes
+
+- [#44](https://github.com/seek-oss/changesets-snapshot/pull/44) [`ec9d16a`](https://github.com/seek-oss/changesets-snapshot/commit/ec9d16af98df91335da5faf55cc74098a75bf02f) Thanks [@renovate](https://github.com/apps/renovate)! - Replace `@antfu/ni` dependency with `detect-package-manager`
+
 ## 0.1.0
 
 ### Minor Changes
