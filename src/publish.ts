@@ -27,7 +27,7 @@ const writeSummary = async ({
 
 const failure = (reason: string) => {
   core.setFailed(reason);
-  throw new Error(reason);
+  return new Error(reason);
 };
 
 export const publishSnapshot = async () => {
