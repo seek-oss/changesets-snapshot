@@ -46,7 +46,7 @@ export const runPublish = async ({
     );
 
     for (const line of changesetPublishOutput.stdout.split('\n')) {
-      const match = line.match(newTagRegex);
+      const match = newTagRegex.exec(line);
       if (!match?.[1]) {
         continue;
       }
@@ -74,7 +74,7 @@ export const runPublish = async ({
     const newTagRegex = /New tag:/;
 
     for (const line of changesetPublishOutput.stdout.split('\n')) {
-      const match = line.match(newTagRegex);
+      const match = newTagRegex.exec(line);
 
       if (match) {
         releasedPackages.push(pkg);
