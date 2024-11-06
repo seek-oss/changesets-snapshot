@@ -4,6 +4,4 @@
 /.gantry/**/*.yml
 gantry*.yaml
 gantry*.yml
-pnpm-lock.yaml
-coverage
 # end managed by skuba

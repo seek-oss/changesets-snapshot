@@ -30,7 +30,7 @@
   },
   "volta": {
     "node": "20.18.0",
-    "yarn": "1.22.22"
+    "pnpm": "8.15.6"
   },
   "skuba": {
     "entryPoint": "src/index.ts",

@@ -1,12 +1,10 @@
 # managed by skuba
 .idea/*
 .vscode/*
-!.vscode/extensions.json
 
 .cdk.staging/
 .serverless/
 cdk.out/
-cdk.context.json
 node_modules*/
 
 /coverage*/
@@ -16,7 +14,7 @@ node_modules*/
 
 .DS_Store
 .eslintcache
-.pnpm-debug.log
+.npmrc
 *.tgz
 *.tsbuildinfo
 npm-debug.log
