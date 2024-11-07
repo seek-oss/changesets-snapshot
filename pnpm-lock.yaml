@@ -38,6 +38,9 @@ devDependencies:
   skuba:
     specifier: 9.1.0
     version: 9.1.0(@babel/core@7.26.0)(@typescript-eslint/parser@8.13.0)
+  tsconfig-seek:
+    specifier: ^2.0.0
+    version: 2.0.0
   tsup:
     specifier: ^8.0.1
     version: 8.3.5(typescript@5.6.3)
