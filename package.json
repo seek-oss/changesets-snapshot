@@ -26,7 +26,6 @@
     "prettier": "^3.0.0",
     "resolve-from": "^5.0.0",
     "skuba": "9.1.0",
-    "tsconfig-seek": "^2.0.0",
     "tsup": "^8.0.1"
   },
   "packageManager": "pnpm@8.15.6",
