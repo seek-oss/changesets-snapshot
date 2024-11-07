@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: --frozen-lockfile
+        run: pnpm install --from-lockfile
 
       - name: Test
         run: pnpm test:ci
