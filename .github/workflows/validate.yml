@@ -16,16 +16,20 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Test
-        run: yarn test:ci
+        run: pnpm test:ci
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint

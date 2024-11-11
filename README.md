@@ -61,12 +61,12 @@ jobs:
           node-version: 20.x
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Publish
         uses: seek-oss/changesets-snapshot@v0
         with:
-          pre-publish: yarn build
+          pre-publish: pnpm build
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

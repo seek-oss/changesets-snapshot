@@ -112,7 +112,7 @@ describe('error handling', () => {
       stdout: '',
       stderr: '\nNo unreleased changesets found\n',
     });
-    detectMock.mockResolvedValueOnce({ name: 'yarn', agent: 'yarn' });
+    detectMock.mockResolvedValueOnce({ name: 'pnpm', agent: 'pnpm' });
 
     await publishSnapshot();
 
