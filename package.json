@@ -28,10 +28,10 @@
     "skuba": "9.1.0",
     "tsup": "^8.0.1"
   },
-  "packageManager": "pnpm@9.13.2",
+  "packageManager": "pnpm@9.14.4",
   "volta": {
-    "node": "20.18.0",
-    "pnpm": "9.13.2"
+    "node": "20.18.1",
+    "pnpm": "9.14.4"
   },
   "skuba": {
     "entryPoint": "src/index.ts",
