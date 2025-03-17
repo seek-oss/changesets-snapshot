@@ -21,22 +21,18 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.26.0",
     "@manypkg/get-packages": "^2.0.0",
-    "@types/node": "^20.11.16",
+    "@types/node": "^22.13.10",
     "package-manager-detector": "^0.2.2",
     "prettier": "^3.0.0",
     "resolve-from": "^5.0.0",
-    "skuba": "9.1.0",
+    "skuba": "10.0.2",
     "tsup": "^8.0.1"
   },
   "packageManager": "pnpm@9.15.4",
-  "volta": {
-    "node": "20.19.0",
-    "pnpm": "9.15.4"
-  },
   "skuba": {
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "9.1.0"
+    "version": "10.0.2"
   }
 }
