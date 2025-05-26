@@ -25,7 +25,7 @@
     "package-manager-detector": "^0.2.2",
     "prettier": "^3.0.0",
     "resolve-from": "^5.0.0",
-    "skuba": "10.1.0",
+    "skuba": "11.0.1",
     "tsup": "^8.0.1"
   },
   "packageManager": "pnpm@10.10.0",
