@@ -4,7 +4,8 @@
     "outDir": "dist",
     "removeComments": false,
     "target": "ES2020",
-    "types": ["@types/node", "@types/jest"]
+    "types": ["@types/node", "@types/jest"],
+    "skipLibCheck": true
   },
   "exclude": ["./node_modules", "dist*/**/*"],
   "extends": "skuba/config/tsconfig.json"
