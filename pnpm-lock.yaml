@@ -32,9 +32,6 @@ importers:
       package-manager-detector:
         specifier: ^0.2.2
         version: 0.2.11
-      prettier:
-        specifier: ^3.0.0
-        version: 3.5.3
       resolve-from:
         specifier: ^5.0.0
         version: 5.0.0
