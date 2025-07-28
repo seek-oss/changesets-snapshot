@@ -28,7 +28,7 @@
     "skuba": "11.1.0",
     "tsup": "^8.0.1"
   },
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.13.1",
   "skuba": {
     "entryPoint": "src/index.ts",
     "template": null,
