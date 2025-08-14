@@ -4,9 +4,9 @@ import { resolveCommand } from 'package-manager-detector/commands';
 import { detect } from 'package-manager-detector/detect';
 import resolveFrom from 'resolve-from';
 
-import { logger } from './logger';
-import { ensureNpmrc, removeNpmrc } from './npm-utils';
-import { run, runPublish } from './run';
+import { logger } from './logger.js';
+import { ensureNpmrc, removeNpmrc } from './npm-utils.js';
+import { run, runPublish } from './run.js';
 
 const writeSummary = async ({
   title,

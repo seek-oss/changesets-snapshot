@@ -3,9 +3,9 @@ import * as github from '@actions/github';
 import { detect } from 'package-manager-detector/detect';
 import resolveFrom from 'resolve-from';
 
-import { logger } from './logger';
-import { publishSnapshot } from './publish';
-import { run, runPublish } from './run';
+import { logger } from './logger.js';
+import { publishSnapshot } from './publish.js';
+import { run, runPublish } from './run.js';
 
 jest.mock('@actions/github');
 jest.mock('@actions/core');
