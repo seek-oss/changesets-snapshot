@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import { type Package, getPackages } from '@manypkg/get-packages';
 
-import { execWithOutput } from './utils';
+import { execWithOutput } from './utils.js';
 
 type RunOptions = {
   script: string;

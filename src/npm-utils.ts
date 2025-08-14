@@ -1,7 +1,7 @@
 /* eslint-disable no-sync */
 import fs from 'fs';
 
-import { logger } from './logger';
+import { logger } from './logger.js';
 
 const userNpmrcPath = './.npmrc';
 
