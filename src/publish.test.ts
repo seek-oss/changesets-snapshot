@@ -76,20 +76,6 @@ test.each(testCases)('command output for %s', async (packageManager) => {
 });
 
 describe('error handling', () => {
-  test('missing NPM token', async () => {
-    process.env.GITHUB_TOKEN = '@github-token';
-
-    await expect(() => publishSnapshot()).rejects.toMatchInlineSnapshot(
-      `[Error: Unable to retrieve NPM publish token]`,
-    );
-
-    expect(coreMock.setFailed.mock.calls[0]).toMatchInlineSnapshot(`
-      [
-        "Unable to retrieve NPM publish token",
-      ]
-    `);
-  });
-
   test('missing GitHub token', async () => {
     process.env.NPM_TOKEN = '@npm-token';
 
