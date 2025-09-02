@@ -1,5 +1,13 @@
 # changesets-snapshot
 
+## 0.2.0
+
+### Minor Changes
+
+- [#80](https://github.com/seek-oss/changesets-snapshot/pull/80) [`c602f4b`](https://github.com/seek-oss/changesets-snapshot/commit/c602f4b5f98099b5d72a71216435205e6e773cc2) Thanks [@samchungy](https://github.com/samchungy)! - Enable npm trusted publishing
+
+  NPM now allows publishing without tokens. See: https://docs.npmjs.com/trusted-publishers for more information.
+
 ## 0.1.1
 
 ### Patch Changes
