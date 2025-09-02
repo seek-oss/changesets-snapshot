@@ -125,5 +125,7 @@ ${newVersionsList}
     );
   }
 
-  removeNpmrc();
+  if (npmToken) {
+    removeNpmrc();
+  }
 };
