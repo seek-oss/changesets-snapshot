@@ -35419,7 +35419,9 @@ ${newVersionsList}
 `.trim()
     );
   }
-  removeNpmrc();
+  if (npmToken) {
+    removeNpmrc();
+  }
 };
 
 // src/index.ts
