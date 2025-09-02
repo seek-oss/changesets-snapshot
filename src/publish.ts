@@ -41,11 +41,6 @@ export const publishSnapshot = async () => {
     throw failure('Unable to retrieve GitHub token');
   }
 
-  const npmToken = process.env.NPM_TOKEN;
-  if (!npmToken) {
-    throw failure('Unable to retrieve NPM publish token');
-  }
-
   const detectResult = await detect({ cwd });
   if (!detectResult) {
     throw failure('Unable to detect package manager');
@@ -58,7 +53,10 @@ export const publishSnapshot = async () => {
     await run({ script: preVersionScript, cwd });
   }
 
-  ensureNpmrc(npmToken);
+  const npmToken = process.env.NPM_TOKEN;
+  if (npmToken) {
+    ensureNpmrc(npmToken);
+  }
 
   const branch = github.context.ref.replace('refs/heads/', '');
   const cleansedBranchName = branch.replace(/\//g, '-');
@@ -127,5 +125,7 @@ ${newVersionsList}
     );
   }
 
-  removeNpmrc();
+  if (npmToken) {
+    removeNpmrc();
+  }
 };
