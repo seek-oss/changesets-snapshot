@@ -36,8 +36,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       skuba:
-        specifier: 12.1.1
-        version: 12.1.1(@babel/core@7.28.4)(@jest/transform@30.1.2)(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(babel-jest@30.1.2(@babel/core@7.28.4))(jest-util@30.0.5)
+        specifier: 12.2.0
+        version: 12.2.0(@babel/core@7.28.4)(@jest/transform@30.1.2)(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(babel-jest@30.1.2(@babel/core@7.28.4))(jest-util@30.0.5)
       tsup:
         specifier: ^8.0.1
         version: 8.5.0(tsx@4.20.5)(typescript@5.9.2)(yaml@2.8.1)
@@ -1876,8 +1876,8 @@ packages:
       eslint: '>=9.9.1'
       typescript: '>=5.5.4'
 
-  eslint-config-skuba@7.1.0:
-    resolution: {integrity: sha512-8BJjPV6iBm1xd0VnZV3+yKrilbLy+kA0hU7yZfw4PrZykvG6Hqb5CjuSYPpVKnoEKFoYepCmJAH5GbJyY5wwDw==}
+  eslint-config-skuba@7.1.1:
+    resolution: {integrity: sha512-A2Vn2pPIE7ge3geopzZMyqe5lHvD6m94nmyxcLkG0dMaxjqJSbdV0inc43eClgHmTVlDsRZe0XmDvsrNptenFQ==}
     engines: {node: '>=20.9.0'}
     peerDependencies:
       eslint: '>=9.11.1'
@@ -1948,8 +1948,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
 
-  eslint-plugin-skuba@1.0.0:
-    resolution: {integrity: sha512-V+3zRELQBW8HWGUUY4L4l9GSNNm6ZcD1qqou43Xw1wiFbslMDl2TC6ubT0vH7+LqSQ0vyfCkBfQvpJdIlDbacw==}
+  eslint-plugin-skuba@1.0.1:
+    resolution: {integrity: sha512-76etzenvVz6Ez26Z+BOyZranmSmmAZkoHiw0lR25AA8MUo5Qe4fmE3oLfkISttDsRPsb+Gja8SMiOBThIWquww==}
     engines: {node: '>=20.9.0'}
     peerDependencies:
       eslint: '>=9.11.1'
@@ -3732,8 +3732,8 @@ packages:
     resolution: {integrity: sha512-kUMbT1oBJCpgrnKoSr0o6wPtvRWT9W9UKvGLwfJYO2WuahZRHOpEyL1ckyMGgMWh0UdpmaoFqKKD29WTomNEGA==}
     engines: {node: '>=8'}
 
-  skuba@12.1.1:
-    resolution: {integrity: sha512-+i//xxWSwA24xUlG20eQonLw4MwycRvEbxjkIL5gkucoJMnIG4QMbO1iHv9teCOfgrW69GnbzBstAcwJ7VB6XA==}
+  skuba@12.2.0:
+    resolution: {integrity: sha512-D41iLFzO542D/sH2SQqyW/oUBy2sSCU2/rMXbWSZdWL5DFpH32ZiaAJgfc59rQsVffR4r3fQrhX0zPhOPc8RyQ==}
     engines: {node: '>=20.9.0'}
     hasBin: true
     peerDependencies:
@@ -6508,11 +6508,11 @@ snapshots:
       - jest
       - supports-color
 
-  eslint-config-skuba@7.1.0(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(jest@30.1.3(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(typescript@5.9.2):
+  eslint-config-skuba@7.1.1(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(jest@30.1.3(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(typescript@5.9.2):
     dependencies:
       eslint: 9.35.0
       eslint-config-seek: 14.6.0(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(jest@30.1.3(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(typescript@5.9.2)
-      eslint-plugin-skuba: 1.0.0(eslint@9.35.0)(typescript-eslint@8.43.0(eslint@9.35.0)(typescript@5.9.2))
+      eslint-plugin-skuba: 1.0.1(eslint@9.35.0)(typescript-eslint@8.43.0(eslint@9.35.0)(typescript@5.9.2))
       eslint-plugin-yml: 1.18.0(eslint@9.35.0)
       typescript: 5.9.2
       typescript-eslint: 8.43.0(eslint@9.35.0)(typescript@5.9.2)
@@ -6605,7 +6605,7 @@ snapshots:
       string.prototype.matchall: 4.0.12
       string.prototype.repeat: 1.0.0
 
-  eslint-plugin-skuba@1.0.0(eslint@9.35.0)(typescript-eslint@8.43.0(eslint@9.35.0)(typescript@5.9.2)):
+  eslint-plugin-skuba@1.0.1(eslint@9.35.0)(typescript-eslint@8.43.0(eslint@9.35.0)(typescript@5.9.2)):
     dependencies:
       eslint: 9.35.0
       typescript-eslint: 8.43.0(eslint@9.35.0)(typescript@5.9.2)
@@ -8627,7 +8627,7 @@ snapshots:
     dependencies:
       unicode-emoji-modifier-base: 1.0.0
 
-  skuba@12.1.1(@babel/core@7.28.4)(@jest/transform@30.1.2)(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(babel-jest@30.1.2(@babel/core@7.28.4))(jest-util@30.0.5):
+  skuba@12.2.0(@babel/core@7.28.4)(@jest/transform@30.1.2)(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(babel-jest@30.1.2(@babel/core@7.28.4))(jest-util@30.0.5):
     dependencies:
       '@esbuild-plugins/tsconfig-paths': 0.1.2(esbuild@0.25.9)(typescript@5.9.2)
       '@eslint/migrate-config': 1.3.8(eslint@9.35.0)
@@ -8644,7 +8644,7 @@ snapshots:
       enquirer: 2.4.1
       esbuild: 0.25.9
       eslint: 9.35.0
-      eslint-config-skuba: 7.1.0(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(jest@30.1.3(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(typescript@5.9.2)
+      eslint-config-skuba: 7.1.1(@typescript-eslint/eslint-plugin@8.43.0(@typescript-eslint/parser@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(typescript@5.9.2))(@typescript-eslint/utils@8.43.0(eslint@9.35.0)(typescript@5.9.2))(eslint@9.35.0)(jest@30.1.3(@types/node@22.18.1)(ts-node@10.9.2(@types/node@22.18.1)(typescript@5.9.2)))(typescript@5.9.2)
       execa: 5.1.1
       fast-glob: 3.3.3
       find-up: 5.0.0
