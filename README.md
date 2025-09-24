@@ -197,7 +197,3 @@ The action outputs are listed in the [action.yml] file.
 
 [step summary]: https://github.blog/2022-05-09-supercharging-github-actions-with-job-summaries/
 [action.yml]: ./action.yml
-
-```
-
-```
