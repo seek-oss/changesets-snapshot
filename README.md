@@ -76,7 +76,8 @@ jobs:
 
 ## Trusted publishing
 
-To configure a npm token-less workflow, you can enable [Trusted publishing](https://docs.npmjs.com/trusted-publishers) on your npm package. Since this requires specifying a single workflow file, you'll need to create a shared release workflow that uses alternate triggers and conditions.
+To configure a npm token-less workflow, you can enable [Trusted publishing](https://docs.npmjs.com/trusted-publishers) on your npm package.
+Since this requires specifying a single workflow file, you'll need to create a shared release workflow that uses alternate triggers and conditions.
 
 An example workflow might look like:
 
