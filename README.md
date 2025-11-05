@@ -33,7 +33,7 @@ To publish snapshot releases for your package, you need to create a workflow tha
 
 You probably also want to run this workflow manually, rather than on every push, which means configuring it to respond to the [`workflow_dispatch` event][wde].
 
-You will need to provide an NPM token and a GitHub token to the `env` of the action.
+In this particular example, you will need to provide an NPM token and a GitHub token to the `env` of the action.
 
 An example workflow might look like:
 
@@ -73,6 +73,87 @@ jobs:
 ```
 
 [wde]: https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow
+
+## Trusted publishing
+
+To configure a npm token-less workflow, you can enable [Trusted publishing](https://docs.npmjs.com/trusted-publishers) on your npm package.
+Since this requires specifying a single workflow file, you'll need to create a shared release workflow that uses alternate triggers and conditions.
+
+An example workflow might look like:
+
+```yaml
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Publish latest version
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # npm 11.5.1 or later is required
+      - name: Install latest npm
+        run: npm install -g npm@latest
+
+      - name: Publish to npm
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  snapshot:
+    name: Publish snapshot version
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # npm 11.5.1 or later is required
+      - name: Install latest npm
+        run: npm install -g npm@latest
+
+      - name: Publish
+        uses: seek-oss/changesets-snapshot@v0
+        with:
+          pre-publish: pnpm build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
 
 ### Advanced triggers
 
