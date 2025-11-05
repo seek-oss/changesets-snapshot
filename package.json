@@ -25,10 +25,10 @@
     "@types/node": "^22.13.10",
     "package-manager-detector": "^0.2.2",
     "resolve-from": "^5.0.0",
-    "skuba": "12.2.0",
+    "skuba": "13.0.3",
     "tsup": "^8.0.1"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.20.0",
   "skuba": {
     "entryPoint": "src/index.ts",
     "template": null,
