@@ -33,6 +33,6 @@
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "12.1.1"
+    "version": "13.0.3"
   }
 }
