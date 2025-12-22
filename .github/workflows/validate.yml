@@ -15,6 +15,13 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v6
+        with:
+          token: ${{ secrets.SEEK_OSS_CI_GITHUB_TOKEN || github.com }}
+
+      - name: Set Git user
+        run: |
+          git config user.name seek-oss-ci
+          git config user.email 34733141+seek-oss-ci@users.noreply.github.com
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
