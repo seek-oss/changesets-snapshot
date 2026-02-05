@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["ES2020"],
+    "rootDir": ".",
+    "lib": ["ES2023"],
     "outDir": "dist",
     "removeComments": false,
-    "target": "ES2020",
+    "target": "ES2023",
     "types": ["@types/node", "@types/jest"],
     "skipLibCheck": true
   },
