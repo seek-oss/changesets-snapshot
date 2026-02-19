@@ -36,8 +36,8 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       skuba:
-        specifier: 14.1.0
-        version: 14.1.0(@babel/core@7.29.0)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.54.0(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)
+        specifier: 14.1.1
+        version: 14.1.1(@babel/core@7.29.0)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.54.0(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0)
       tsup:
         specifier: ^8.0.1
         version: 8.5.1(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.2)
@@ -1238,8 +1238,8 @@ packages:
   '@sinonjs/fake-timers@13.0.5':
     resolution: {integrity: sha512-36/hTbH2uaWuGVERyC6da9YwGWnzUZXuPro/F2LfsdOsLnCojz/iSH8MxUt/FD2S5XBSVPhmArFUXcpCQ2Hkiw==}
 
-  '@skuba-lib/api@2.0.1':
-    resolution: {integrity: sha512-YtTYAQdgoa3YvYccODKJGMqxM2C1mpgMK3gbkbrseWvS5jakoKqu/ivWheRf40jQoiw9pFu5TCPRGUxVY4s+Jg==}
+  '@skuba-lib/api@2.0.2':
+    resolution: {integrity: sha512-rONodJ9MfPkBmHoCpwtYBXQEzgsQQU/LsUdgCaK35b8/Hy8OyN4Ux+OhS0CUoH3hqSe+Q341BBe4FFDhPgz76Q==}
     engines: {node: '>=22.14.0'}
 
   '@tsconfig/node10@1.0.12':
@@ -3761,10 +3761,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  prettier-plugin-packagejson@2.5.22:
-    resolution: {integrity: sha512-G6WalmoUssKF8ZXkni0+n4324K+gG143KPysSQNW+FrR0XyNb3BdRxchGC/Q1FE/F702p7/6KU7r4mv0WSWbzA==}
+  prettier-plugin-packagejson@3.0.0:
+    resolution: {integrity: sha512-z8/QmPSqx/ANvvQMWJSkSq1+ihBXeuwDEYdjX3ZjRJ5Ty1k7vGbFQfhzk2eDe0rwS/TNyRjWK/qnjJEStAOtDw==}
     peerDependencies:
-      prettier: '>= 1.16.0'
+      prettier: ^3
     peerDependenciesMeta:
       prettier:
         optional: true
@@ -4041,8 +4041,8 @@ packages:
     resolution: {integrity: sha512-kUMbT1oBJCpgrnKoSr0o6wPtvRWT9W9UKvGLwfJYO2WuahZRHOpEyL1ckyMGgMWh0UdpmaoFqKKD29WTomNEGA==}
     engines: {node: '>=8'}
 
-  skuba@14.1.0:
-    resolution: {integrity: sha512-QzYmRu4lLdrf0CZA95PrQ5XFE8KrHxlv48t0V2739GR5hgFDJX8hF3IYhddNIlx+jy2/0PtMg2eAc8tZx4lecg==}
+  skuba@14.1.1:
+    resolution: {integrity: sha512-0KU6duYc2Cp9wfDKaHQvfgJtLaK/1IpfthfEV8uhKuqvxvFGpLAqQqw7TjfB9xKWKbSRBUeAQ8ZRNrtiTutFog==}
     engines: {node: '>=22.14.0'}
     hasBin: true
 
@@ -6058,7 +6058,7 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  '@skuba-lib/api@2.0.1':
+  '@skuba-lib/api@2.0.2':
     dependencies:
       '@octokit/graphql': 9.0.3
       '@octokit/rest': 22.0.1
@@ -8844,7 +8844,7 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-packagejson@2.5.22(prettier@3.8.1):
+  prettier-plugin-packagejson@3.0.0(prettier@3.8.1):
     dependencies:
       sort-package-json: 3.6.0
     optionalDependencies:
@@ -9222,7 +9222,7 @@ snapshots:
     dependencies:
       unicode-emoji-modifier-base: 1.0.0
 
-  skuba@14.1.0(@babel/core@7.29.0)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.54.0(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0):
+  skuba@14.1.1(@babel/core@7.29.0)(@jest/transform@30.2.0)(@typescript-eslint/eslint-plugin@8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3))(@typescript-eslint/utils@8.54.0(eslint@9.39.2)(typescript@5.9.3))(babel-jest@30.2.0(@babel/core@7.29.0))(jest-util@30.2.0):
     dependencies:
       '@ast-grep/lang-json': 0.0.6
       '@ast-grep/napi': 0.40.5
@@ -9233,7 +9233,7 @@ snapshots:
       '@octokit/graphql-schema': 15.26.1
       '@octokit/rest': 22.0.1
       '@octokit/types': 16.0.0
-      '@skuba-lib/api': 2.0.1
+      '@skuba-lib/api': 2.0.2
       '@types/jest': 30.0.0
       '@types/node': 24.10.9
       concurrently: 9.2.1
@@ -9261,7 +9261,7 @@ snapshots:
       npm-which: 3.0.1
       picomatch: 4.0.3
       prettier: 3.8.1
-      prettier-plugin-packagejson: 2.5.22(prettier@3.8.1)
+      prettier-plugin-packagejson: 3.0.0(prettier@3.8.1)
       read-pkg-up: 7.0.1
       semantic-release: 25.0.3(typescript@5.9.3)
       simple-git: 3.30.0
