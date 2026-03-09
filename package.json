@@ -22,7 +22,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.26.0",
     "@manypkg/get-packages": "^2.0.0",
-    "@types/node": "^22.13.10",
+    "@types/node": "^24.0.0",
     "package-manager-detector": "^0.2.2",
     "resolve-from": "^5.0.0",
     "skuba": "14.1.1",
