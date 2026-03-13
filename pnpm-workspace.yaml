@@ -1,27 +1,5 @@
-# managed by skuba
-ignorePatchFailures: false
-minimumReleaseAge: 4320 # 3 days
-minimumReleaseAgeExclude:
-  - '@seek/*'
-  - '@skuba-lib/*'
-  - eslint-config-seek
-  - eslint-config-skuba
-  - eslint-plugin-skuba
-  - skuba
-  - skuba-dive
-  - tsconfig-seek
-packageManagerStrictVersion: true
-publicHoistPattern:
-  - '@eslint/*'
-  - '@types*'
-  - eslint
-  - eslint-config-skuba
-  - prettier
-  - esbuild
-  - jest
-  - tsconfig-seek
-  - typescript
-  # end managed by skuba
+configDependencies:
+  pnpm-plugin-skuba: 2.0.0+sha512-nhxd9TdhOOXJ1bcQaqtDiI02gbxhJ8lTw3ZzSHDJPqIbbtnABQT7nLKqLX2zKi7tbfRI8+QSgL3eR2d/QFOLew==
 
 onlyBuiltDependencies:
   - esbuild

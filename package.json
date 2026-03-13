@@ -4,7 +4,17 @@
   "private": false,
   "license": "MIT",
   "sideEffects": false,
-  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "@seek/changesets-snapshot/source": "./src/index.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./lib/index.cjs",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.cts",
   "scripts": {
     "build": "tsup",
     "changeset": "changeset",
@@ -25,14 +35,26 @@
     "@types/node": "^24.0.0",
     "package-manager-detector": "^0.2.2",
     "resolve-from": "^5.0.0",
-    "skuba": "14.1.1",
+    "skuba": "15.0.1",
     "tsup": "^8.0.1"
   },
   "packageManager": "pnpm@10.30.1",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": {
+        "import": "./lib/index.mjs",
+        "require": "./lib/index.cjs"
+      },
+      "./package.json": "./package.json"
+    }
+  },
   "skuba": {
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "14.1.0"
+    "version": "15.0.1"
   }
 }
