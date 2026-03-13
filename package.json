@@ -25,7 +25,7 @@
     "@types/node": "^24.0.0",
     "package-manager-detector": "^0.2.2",
     "resolve-from": "^5.0.0",
-    "skuba": "14.1.1",
+    "skuba": "15.0.1",
     "tsup": "^8.0.1"
   },
   "packageManager": "pnpm@10.30.1",
