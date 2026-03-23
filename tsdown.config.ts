@@ -3,14 +3,12 @@ import { defineConfig } from 'tsdown';
 export default defineConfig({
   failOnWarn: true,
   entry: ['src/index.ts'],
-  format: ['cjs', 'esm'],
+  format: 'esm',
+  target: 'node24',
   outDir: 'lib',
-  dts: true,
+  dts: false,
   checks: {
     legacyCjs: false,
   },
-  publint: true,
-  attw: true,
-  unbundle: true, // TODO: determine if your project can be bundled
   exports: { devExports: '@seek/changesets-snapshot/source' },
 });

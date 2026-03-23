@@ -6,7 +6,7 @@
     "outDir": "dist",
     "removeComments": false,
     "target": "ES2023",
-    "types": ["@types/node", "@types/jest"],
+    "types": ["@types/node"],
     "skipLibCheck": true
   },
   "exclude": ["./node_modules", "dist*/**/*"],

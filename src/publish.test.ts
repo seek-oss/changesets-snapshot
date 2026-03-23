@@ -2,31 +2,48 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { detect } from 'package-manager-detector/detect';
 import resolveFrom from 'resolve-from';
+import {
+  type MockedFunction,
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest';
 
 import { logger } from './logger.js';
 import { publishSnapshot } from './publish.js';
 import { run, runPublish } from './run.js';
 
-jest.mock('@actions/github');
-jest.mock('@actions/core');
-jest.mock('package-manager-detector/detect');
-jest.mock('resolve-from');
-jest.mock('./npm-utils');
-jest.mock('./run');
-jest.mock('./logger');
+vi.mock('@actions/github');
+vi.mock('@actions/core');
+vi.mock('package-manager-detector/detect');
+vi.mock('resolve-from');
+vi.mock('./npm-utils');
+vi.mock('./run');
+vi.mock('./logger');
 
-const runMock = jest.mocked(run);
-const runPublishMock = jest.mocked(runPublish);
-const coreMock = jest.mocked(core);
-const detectMock = jest.mocked(detect);
+const runMock = vi.mocked(run);
+const runPublishMock = vi.mocked(runPublish);
+const coreMock = vi.mocked(core);
+const detectMock = vi.mocked(detect);
 
-const getScriptCalls = <T extends jest.MockableFunction>(
-  mockedFn: jest.MockedFn<T>,
+type MockableFunction = (...args: any[]) => any;
+
+const getScriptCalls = <T extends MockableFunction>(
+  mockedFn: MockedFunction<T>,
 ) => mockedFn.mock.calls.map((args) => args[0].script);
 const expectSummary = () => {
-  expect(coreMock.summary.addHeading.mock.calls).toMatchSnapshot('summary');
-  expect(coreMock.summary.addRaw.mock.calls).toMatchSnapshot('summary');
-  expect(coreMock.summary.addCodeBlock.mock.calls).toMatchSnapshot('summary');
+  expect(vi.mocked(coreMock.summary.addHeading).mock.calls).toMatchSnapshot(
+    'summary',
+  );
+  expect(vi.mocked(coreMock.summary.addRaw).mock.calls).toMatchSnapshot(
+    'summary',
+  );
+  expect(vi.mocked(coreMock.summary.addCodeBlock).mock.calls).toMatchSnapshot(
+    'summary',
+  );
   expect(coreMock.summary.write).toHaveBeenCalled();
 };
 
@@ -36,7 +53,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const testCases = ['yarn', 'npm', 'pnpm'] as const;
@@ -61,17 +78,15 @@ test.each(testCases)('command output for %s', async (packageManager) => {
     name: packageManager,
     agent: packageManager,
   });
-  jest
-    .mocked(resolveFrom)
-    .mockImplementationOnce(
-      (_fromDirectory, moduleId) => `/__mocked_node_modules__/${moduleId}`,
-    );
+  vi.mocked(resolveFrom).mockImplementationOnce(
+    (_fromDirectory, moduleId) => `/__mocked_node_modules__/${moduleId}`,
+  );
 
   await publishSnapshot();
 
   expect(getScriptCalls(runMock)).toMatchSnapshot('run');
   expect(getScriptCalls(runPublishMock)).toMatchSnapshot('runPublish');
-  expect(jest.mocked(logger).log.mock.calls[0]).toMatchSnapshot('logger.log');
+  expect(vi.mocked(logger).log.mock.calls[0]).toMatchSnapshot('logger.log');
   expectSummary();
 });
 

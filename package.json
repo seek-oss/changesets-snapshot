@@ -4,39 +4,40 @@
   "private": false,
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "exports": {
     ".": {
       "@seek/changesets-snapshot/source": "./src/index.ts",
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.cjs"
+      "default": "./lib/index.mjs"
     },
     "./package.json": "./package.json"
   },
-  "main": "./lib/index.cjs",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.cts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
-    "build": "tsup",
+    "build": "skuba build-package",
     "changeset": "changeset",
     "format": "skuba format",
     "lint": "skuba lint",
-    "release": "node ./scripts/release.mjs",
-    "test": "skuba test",
-    "test:ci": "skuba test --coverage",
+    "release": "node ./scripts/release.ts",
+    "test": "vitest --run",
+    "test:ci": "vitest --run --coverage",
     "test:watch": "skuba test --watch"
   },
   "devDependencies": {
-    "@actions/core": "^1.10.0",
-    "@actions/exec": "^1.1.1",
-    "@actions/github": "^6.0.0",
-    "@changesets/changelog-github": "^0.5.0",
+    "@actions/core": "^3.0.0",
+    "@actions/exec": "^3.0.0",
+    "@actions/github": "^9.0.0",
+    "@changesets/changelog-github": "^0.6.0",
     "@changesets/cli": "^2.26.0",
-    "@manypkg/get-packages": "^2.0.0",
+    "@manypkg/get-packages": "^3.1.0",
     "@types/node": "^24.0.0",
-    "package-manager-detector": "^0.2.2",
+    "@vitest/coverage-v8": "4.1.0",
+    "package-manager-detector": "^1.6.0",
     "resolve-from": "^5.0.0",
     "skuba": "15.3.0",
-    "tsup": "^8.0.1"
+    "vitest": "^4.1.0"
   },
   "packageManager": "pnpm@10.30.1",
   "engines": {
@@ -44,10 +45,7 @@
   },
   "publishConfig": {
     "exports": {
-      ".": {
-        "import": "./lib/index.mjs",
-        "require": "./lib/index.cjs"
-      },
+      ".": "./lib/index.mjs",
       "./package.json": "./package.json"
     }
   },
