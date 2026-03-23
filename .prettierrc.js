@@ -1,1 +1,3 @@
-module.exports = require('skuba/config/prettier');
+import prettierConfigSkuba from 'skuba/config/prettier.js';
+
+export default prettierConfigSkuba;

@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "customConditions": ["@seek/changesets-snapshot/source"],
     "rootDir": ".",
     "lib": ["ES2023"],
     "outDir": "dist",
     "removeComments": false,
     "target": "ES2023",
-    "types": ["@types/node", "@types/jest"],
+    "types": ["@types/node"],
     "skipLibCheck": true
   },
   "exclude": ["./node_modules", "dist*/**/*"],
