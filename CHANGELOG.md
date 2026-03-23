@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.3.2
+
+### Patch Changes
+
+- [#112](https://github.com/seek-oss/changesets-snapshot/pull/112) [`2a96212`](https://github.com/seek-oss/changesets-snapshot/commit/2a96212370ece0444583bc1dc8a0ce5c3740a36d) Thanks [@askoufis](https://github.com/askoufis)! - Fix broken 0.3.1 release
+
 ## 0.3.1
 
 ### Patch Changes
