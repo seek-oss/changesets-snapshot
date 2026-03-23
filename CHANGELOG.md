@@ -1,5 +1,11 @@
 # changesets-snapshot
 
+## 0.3.0
+
+### Minor Changes
+
+- [#105](https://github.com/seek-oss/changesets-snapshot/pull/105) [`976523c`](https://github.com/seek-oss/changesets-snapshot/commit/976523c037a832c3df8b30dbbcc8790606daf293) Thanks [@renovate](https://github.com/apps/renovate)! - Migrate bundling to `tsdown`. Bundle action as ESM. Use Node.js 24 runtime. No functional changes expected.
+
 ## 0.2.0
 
 ### Minor Changes
