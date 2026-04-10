@@ -33,7 +33,7 @@
     "@changesets/cli": "^2.26.0",
     "@manypkg/get-packages": "^3.1.0",
     "@types/node": "^24.0.0",
-    "@vitest/coverage-v8": "4.1.2",
+    "@vitest/coverage-v8": "^4.1.2",
     "package-manager-detector": "^1.6.0",
     "resolve-from": "^5.0.0",
     "skuba": "15.3.0",
