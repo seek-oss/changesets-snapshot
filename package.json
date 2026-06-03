@@ -39,7 +39,7 @@
     "skuba": "15.3.0",
     "vitest": "^4.1.0"
   },
-  "packageManager": "pnpm@10.33.2",
+  "packageManager": "pnpm@10.34.1",
   "engines": {
     "node": ">=22.14.0"
   },
