@@ -14,12 +14,12 @@ const packageJson = JSON.parse(await readFile('package.json', 'utf-8')) as {
   version: string;
 };
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const import.meta.filename = fileURLToPath(import.meta.url);
+const import.meta.dirname = path.dirname(import.meta.filename);
 const releaseLine = `v${packageJson.version.split('.')[0]}`;
 const tag = `v${packageJson.version}`;
 
-process.chdir(path.join(__dirname, '..'));
+process.chdir(path.join(import.meta.dirname, '..'));
 
 const { exitCode, stderr } = await getExecOutput(
   'git',

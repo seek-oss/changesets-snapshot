@@ -20,9 +20,9 @@ vi.mock('@actions/github');
 vi.mock('@actions/core');
 vi.mock('package-manager-detector/detect');
 vi.mock('resolve-from');
-vi.mock('./npm-utils');
-vi.mock('./run');
-vi.mock('./logger');
+vi.mock('./npm-utils.js');
+vi.mock('./run.js');
+vi.mock('./logger.js');
 
 const runMock = vi.mocked(run);
 const runPublishMock = vi.mocked(runPublish);
