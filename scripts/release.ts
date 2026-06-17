@@ -3,8 +3,6 @@
 
 /* eslint-disable no-console */
 import { readFile } from 'fs/promises';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 import { exec, getExecOutput } from '@actions/exec';
 
@@ -14,12 +12,10 @@ const packageJson = JSON.parse(await readFile('package.json', 'utf-8')) as {
   version: string;
 };
 
-const import.meta.filename = fileURLToPath(import.meta.url);
-const import.meta.dirname = path.dirname(import.meta.filename);
 const releaseLine = `v${packageJson.version.split('.')[0]}`;
 const tag = `v${packageJson.version}`;
 
-process.chdir(path.join(import.meta.dirname, '..'));
+process.chdir(new URL('..', import.meta.url).pathname);
 
 const { exitCode, stderr } = await getExecOutput(
   'git',

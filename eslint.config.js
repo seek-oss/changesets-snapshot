@@ -1,3 +1,3 @@
-import eslintConfigSkuba from 'eslint-config-skuba';
+import skuba from 'eslint-config-skuba';
 
-export default eslintConfigSkuba;
+export default skuba;
