@@ -36,7 +36,7 @@
     "@vitest/coverage-v8": "^4.1.2",
     "package-manager-detector": "^1.6.0",
     "resolve-from": "^5.0.0",
-    "skuba": "15.3.0",
+    "skuba": "16.2.0",
     "vitest": "^4.1.0"
   },
   "packageManager": "pnpm@10.34.1",
@@ -50,17 +50,17 @@
     }
   },
   "inlinedDependencies": {
-    "@actions/core": "3.0.0",
+    "@actions/core": "3.0.1",
     "@actions/exec": "3.0.0",
-    "@actions/github": "9.0.0",
+    "@actions/github": "9.1.1",
     "@actions/http-client": [
       "3.0.2",
-      "4.0.0"
+      "4.0.1"
     ],
     "@actions/io": "3.0.2",
     "@manypkg/find-root": "3.1.0",
     "@manypkg/get-packages": "3.1.0",
-    "@manypkg/tools": "2.1.0",
+    "@manypkg/tools": "2.1.1",
     "@octokit/auth-token": "6.0.0",
     "@octokit/core": "7.0.6",
     "@octokit/endpoint": "11.0.3",
@@ -74,19 +74,19 @@
     "fdir": "6.5.0",
     "jju": "1.4.0",
     "js-yaml": "4.1.1",
-    "json-with-bigint": "3.5.7",
+    "json-with-bigint": "3.5.8",
     "package-manager-detector": "1.6.0",
-    "picomatch": "4.0.3",
+    "picomatch": "4.0.4",
     "resolve-from": "5.0.0",
-    "tinyglobby": "0.2.15",
+    "tinyglobby": "0.2.17",
     "tunnel": "0.0.6",
-    "undici": "6.23.0",
+    "undici": "6.25.0",
     "universal-user-agent": "7.0.3"
   },
   "skuba": {
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "15.3.0"
+    "version": "16.2.0"
   }
 }

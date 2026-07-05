@@ -1,3 +1,3 @@
-import prettierConfigSkuba from 'skuba/config/prettier.js';
+import config from 'skuba/config/prettier.js';
 
-export default prettierConfigSkuba;
+export default config;
