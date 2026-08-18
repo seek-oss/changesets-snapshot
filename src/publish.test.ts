@@ -15,6 +15,10 @@ import {
 import { logger } from './logger.js';
 import { publishSnapshot } from './publish.js';
 import { run, runPublish } from './run.js';
+import {
+  pinChangedWorkspaceRanges,
+  readWorkspacePackageVersions,
+} from './workspace-protocol.js';
 
 vi.mock('@actions/github');
 vi.mock('@actions/core');
@@ -23,11 +27,16 @@ vi.mock('resolve-from');
 vi.mock('./npm-utils.js');
 vi.mock('./run.js');
 vi.mock('./logger.js');
+vi.mock('./workspace-protocol.js');
 
 const runMock = vi.mocked(run);
 const runPublishMock = vi.mocked(runPublish);
 const coreMock = vi.mocked(core);
 const detectMock = vi.mocked(detect);
+const readWorkspacePackageVersionsMock = vi.mocked(
+  readWorkspacePackageVersions,
+);
+const pinChangedWorkspaceRangesMock = vi.mocked(pinChangedWorkspaceRanges);
 
 type MockableFunction = (...args: any[]) => any;
 
@@ -50,6 +59,8 @@ const expectSummary = () => {
 beforeEach(() => {
   process.env.GITHUB_TOKEN = '';
   process.env.NPM_TOKEN = '';
+  readWorkspacePackageVersionsMock.mockResolvedValue(new Map());
+  pinChangedWorkspaceRangesMock.mockResolvedValue(undefined);
 });
 
 afterEach(() => {
@@ -84,6 +95,10 @@ test.each(testCases)('command output for %s', async (packageManager) => {
 
   await publishSnapshot();
 
+  expect(pinChangedWorkspaceRangesMock).toHaveBeenCalledWith(
+    process.cwd(),
+    new Map(),
+  );
   expect(getScriptCalls(runMock)).toMatchSnapshot('run');
   expect(getScriptCalls(runPublishMock)).toMatchSnapshot('runPublish');
   expect(vi.mocked(logger).log.mock.calls[0]).toMatchSnapshot('logger.log');
@@ -117,6 +132,7 @@ describe('error handling', () => {
 
     await publishSnapshot();
 
+    expect(pinChangedWorkspaceRangesMock).not.toHaveBeenCalled();
     expectSummary();
   });
 });
