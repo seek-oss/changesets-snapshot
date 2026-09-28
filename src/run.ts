@@ -1,12 +1,15 @@
 import * as core from '@actions/core';
 import { type Package, getPackages } from '@manypkg/get-packages';
 
-import { execWithOutput } from './utils.js';
+import {
+  initChangesetsOutput,
+  readChangesetsOutput,
+} from './changesets-output.js';
+import { type CommandOptions, execWithOutput } from './utils.js';
 
 type RunOptions = {
   script: string;
-  cwd?: string;
-};
+} & CommandOptions;
 
 type PublishedPackage = { name: string; version: string };
 
@@ -14,15 +17,26 @@ type PublishResult =
   | { published: true; publishedPackages: PublishedPackage[] }
   | { published: false };
 
-export const run = async ({ script, cwd = process.cwd() }: RunOptions) => {
+export const run = async ({
+  script,
+  cwd = process.cwd(),
+  env,
+  ignoreReturnCode,
+}: RunOptions) => {
   const [runCommand, ...runArgs] = script.split(/\s+/);
 
   if (!runCommand) {
     throw new Error(`Error running script "${script}". No command found.`);
   }
 
-  return execWithOutput(runCommand, runArgs, { cwd });
+  return execWithOutput(runCommand, runArgs, { cwd, env, ignoreReturnCode });
 };
+
+const packageNotFoundError = (pkgName: string) =>
+  new Error(
+    `Package "${pkgName}" not found.` +
+      ' This is probably a bug in the action, please open an issue',
+  );
 
 export const runPublish = async ({
   script,
@@ -34,31 +48,32 @@ export const runPublish = async ({
     await execWithOutput(prepublishScript);
   }
 
-  const changesetPublishOutput = await run({ script, cwd });
+  const changesetsOutputFile = await initChangesetsOutput();
 
+  await run({
+    script,
+    cwd,
+    env: { ...process.env, CHANGESETS_OUTPUT: changesetsOutputFile },
+  });
+
+  const changesetsOutput = await readChangesetsOutput(changesetsOutputFile);
   const { packages, tool } = await getPackages(cwd);
   const releasedPackages: Package[] = [];
 
   if (tool.type !== 'root') {
-    const newTagRegex = /New tag:\s+(@[^/]+\/[^@]+|[^/]+)@([^\s]+)/;
     const packagesByName = new Map(
-      packages.map((x) => [x.packageJson.name, x]),
+      packages.map((pkg) => [pkg.packageJson.name, pkg]),
     );
 
-    for (const line of changesetPublishOutput.stdout.split('\n')) {
-      const match = newTagRegex.exec(line);
-      if (!match?.[1]) {
+    for (const outputEvent of changesetsOutput) {
+      if (outputEvent.type !== 'git-tag') {
         continue;
       }
 
-      const pkgName = match[1];
-
+      const pkgName = outputEvent.packageName;
       const pkg = packagesByName.get(pkgName);
       if (pkg === undefined) {
-        throw new Error(
-          `Package "${pkgName}" not found.` +
-            ' This is probably a bug in the action, please open an issue',
-        );
+        throw packageNotFoundError(pkgName);
       }
 
       releasedPackages.push(pkg);
@@ -71,12 +86,9 @@ export const runPublish = async ({
       );
     }
     const pkg = packages[0];
-    const newTagRegex = /New tag:/;
 
-    for (const line of changesetPublishOutput.stdout.split('\n')) {
-      const match = newTagRegex.exec(line);
-
-      if (match) {
+    for (const outputEvent of changesetsOutput) {
+      if (outputEvent.type === 'git-tag') {
         releasedPackages.push(pkg);
         break;
       }

@@ -170,23 +170,3 @@ exports[`command output for yarn > summary 3`] = `
   ],
 ]
 `;
-
-exports[`error handling > no changesets found > summary 1`] = `
-[
-  [
-    "⚠️ No snapshot published",
-    3,
-  ],
-]
-`;
-
-exports[`error handling > no changesets found > summary 2`] = `
-[
-  [
-    "<p>No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.</p>",
-    true,
-  ],
-]
-`;
-
-exports[`error handling > no changesets found > summary 3`] = `[]`;

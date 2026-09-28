@@ -1,44 +1,22 @@
-// Taken from https://github.com/changesets/action/blob/main/scripts/release.js
+// Based off https://github.com/changesets/action/blob/0138f456ec3d73906fcd11169ce59502d8d241c1/scripts/release.ts
 // Rationale: https://github.com/changesets/action/pull/118
 
-/* eslint-disable no-console */
-import { readFile } from 'fs/promises';
+import path from 'node:path';
 
-import { exec, getExecOutput } from '@actions/exec';
+import { exec } from '@actions/exec';
 
-// Would ideally import `package.json` with an import attribute, but ESLint only supports it
-// experimentally and I can't even find how to enable support for it
-const packageJson = JSON.parse(await readFile('package.json', 'utf-8')) as {
-  version: string;
-};
+import pkgJson from '../package.json' with { type: 'json' };
 
-const releaseLine = `v${packageJson.version.split('.')[0]}`;
-const tag = `v${packageJson.version}`;
+const tag = `v${pkgJson.version}`;
+const releaseLine = `v${pkgJson.version.split('.')[0]}`;
 
-process.chdir(new URL('..', import.meta.url).pathname);
-
-const { exitCode, stderr } = await getExecOutput(
-  'git',
-  ['ls-remote', '--exit-code', 'origin', '--tags', `refs/tags/${tag}`],
-  {
-    ignoreReturnCode: true,
-  },
-);
-if (exitCode === 0) {
-  console.log(
-    `Action is not being published because version ${tag} is already published`,
-  );
-  process.exit(exitCode); // eslint-disable-line no-process-exit
-}
-if (exitCode !== 2) {
-  throw new Error(`git ls-remote exited with ${exitCode}:\n${stderr}`);
-}
+process.chdir(path.join(import.meta.dirname, '..'));
 
 await exec('git', ['checkout', '--detach']);
 await exec('git', ['add', '--force', 'dist']);
 await exec('git', ['commit', '-m', tag]);
 
-await exec('changeset', ['tag']);
+await exec('changeset', ['git-tag']);
 
 await exec('git', [
   'push',
