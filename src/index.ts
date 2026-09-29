@@ -1,9 +1,10 @@
-import { version as changesetsCliVersion } from '@changesets/cli/package.json';
-
 import { publishSnapshot } from './publish.js';
 
-const supportedChangesetsCliMajorVersion = '3';
+const { version: changesetsCliVersion } = (
+  await import('@changesets/cli/package.json')
+).default;
 
+const supportedChangesetsCliMajorVersion = '3';
 const supportedChangesetsCliInstalled = changesetsCliVersion.startsWith(
   supportedChangesetsCliMajorVersion,
 );

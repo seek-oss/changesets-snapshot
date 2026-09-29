@@ -3,7 +3,6 @@
     "customConditions": ["@seek/changesets-snapshot/source"],
     "rootDir": ".",
     "lib": ["ES2023"],
-    "module": "es2022",
     "outDir": "dist",
     "removeComments": false,
     "target": "ES2023",
