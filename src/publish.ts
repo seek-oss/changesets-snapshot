@@ -7,6 +7,10 @@ import resolveFrom from 'resolve-from';
 import { logger } from './logger.js';
 import { ensureNpmrc, removeNpmrc } from './npm-utils.js';
 import { run, runPublish } from './run.js';
+import {
+  pinChangedWorkspaceRanges,
+  readWorkspacePackageVersions,
+} from './workspace-protocol.js';
 
 const writeSummary = async ({
   title,
@@ -61,6 +65,7 @@ export const publishSnapshot = async () => {
   const branch = github.context.ref.replace('refs/heads/', '');
   const cleansedBranchName = branch.replace(/\//g, '-');
   const changesetsCli = resolveFrom(cwd, '@changesets/cli/bin.js');
+  const versionsBeforeSnapshot = await readWorkspacePackageVersions(cwd);
 
   // Run the snapshot version
   const versionResult = await run({
@@ -81,6 +86,8 @@ export const publishSnapshot = async () => {
 
     return;
   }
+
+  await pinChangedWorkspaceRanges(cwd, versionsBeforeSnapshot);
 
   const result = await runPublish({
     script: `node ${changesetsCli} publish --tag ${cleansedBranchName}`,
