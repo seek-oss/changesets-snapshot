@@ -1,5 +1,28 @@
 # changesets-snapshot
 
+## 1.0.0
+
+### Major Changes
+
+- [#140](https://github.com/seek-oss/changesets-snapshot/pull/140) [`56256e3`](https://github.com/seek-oss/changesets-snapshot/commit/56256e3d4e44af55f508f27084fec01a305637ad) Thanks [@askoufis](https://github.com/askoufis)! - Require `@changesets/cli` v3
+
+  This change requires that the consuming project be updated to `@changesets/cli@^3`. This can be done by running the following command at the top-level of the project:
+
+  ```sh
+  pnpm add --save-dev --workspace-root @changesets/cli@3
+  ```
+
+  A consequence of this change is that a snapshot with no changesets now fails the job, aligning behaviour between this action and the Changesets CLI.
+
+  It is also recommended to upgrade the official changesets action to v2:
+
+  ```diff
+  -uses: changesets/action@v1
+  +uses: changesets/action@v2
+  ```
+
+  For more details about this upgrade and what else might be required for your project please refer to the [Changesets V3 announcement](https://changesets.dev/blog/announcing-changesets-v3).
+
 ## 0.3.2
 
 ### Patch Changes
