@@ -22,6 +22,7 @@ You can [provide extra scripts] that you want to run ahead of each of the versio
 
 Practically, this means:
 
+- **This action requires `@changesets/cli` v3**. CLI v2 is not supported; stay on `seek-oss/changesets-snapshot@v0` if you cannot upgrade yet.
 - **This action can only publish NPM packages**. `changeset publish` eventually calls `npm publish`, so a project that isn't published with `npm` won't be able to use this snapshot action.
 - **This action can only publish to the npmjs.com registry**. To ensure auth is set up correctly, this action will overwrite any existing `.npmrc` files. This means that alternate registry information will be lost (e.g. for publishing to GitHub Packages). We're open to this being a feature though, so create an issue if this is a part of the workflow that you need.
 
@@ -64,7 +65,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Publish
-        uses: seek-oss/changesets-snapshot@v0
+        uses: seek-oss/changesets-snapshot@v1
         with:
           pre-publish: pnpm build
         env:
@@ -148,7 +149,7 @@ jobs:
         run: npm install -g npm@latest
 
       - name: Publish
-        uses: seek-oss/changesets-snapshot@v0
+        uses: seek-oss/changesets-snapshot@v1
         with:
           pre-publish: pnpm build
         env:

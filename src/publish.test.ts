@@ -105,18 +105,19 @@ describe('error handling', () => {
     `);
   });
 
-  test('no changesets found', async () => {
+  test('changeset version fails', async () => {
     process.env.GITHUB_TOKEN = '@github-token';
-    process.env.NPM_TOKEN = '@npm-token';
-    runMock.mockResolvedValueOnce({
-      code: 0,
-      stdout: '',
-      stderr: '\nNo unreleased changesets found\n',
-    });
+    github.context.ref = 'feature/123-branch';
+    runMock.mockRejectedValueOnce(
+      new Error('The process failed with exit code 1'),
+    );
     detectMock.mockResolvedValueOnce({ name: 'pnpm', agent: 'pnpm' });
+    vi.mocked(resolveFrom).mockReturnValue('/cli/bin.js');
 
-    await publishSnapshot();
+    await expect(() => publishSnapshot()).rejects.toMatchInlineSnapshot(
+      `[Error: The process failed with exit code 1]`,
+    );
 
-    expectSummary();
+    expect(runPublishMock).not.toHaveBeenCalled();
   });
 });

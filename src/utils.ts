@@ -1,9 +1,14 @@
-import { exec } from '@actions/exec';
+import { type ExecOptions, exec } from '@actions/exec';
+
+export type CommandOptions = Pick<
+  ExecOptions,
+  'cwd' | 'env' | 'ignoreReturnCode'
+>;
 
 export const execWithOutput = async (
   command: string,
   args?: string[],
-  options?: { ignoreReturnCode?: boolean; cwd?: string },
+  options?: CommandOptions,
 ) => {
   let myOutput = '';
   let myError = '';

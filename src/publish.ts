@@ -62,25 +62,10 @@ export const publishSnapshot = async () => {
   const cleansedBranchName = branch.replace(/\//g, '-');
   const changesetsCli = resolveFrom(cwd, '@changesets/cli/bin.js');
 
-  // Run the snapshot version
-  const versionResult = await run({
+  await run({
     script: `node ${changesetsCli} version --snapshot ${cleansedBranchName}`,
     cwd,
   });
-
-  if (versionResult.stderr.includes('No unreleased changesets found')) {
-    logger.log(
-      '\nNo changesets found. In order to publish a snapshot version, you must have at least one changeset committed.\n',
-    );
-
-    await writeSummary({
-      title: '⚠️ No snapshot published',
-      message:
-        'No changesets found, skipping publish. If you want to publish a snapshot version, you may need to add a changeset for the relevant package.',
-    });
-
-    return;
-  }
 
   const result = await runPublish({
     script: `node ${changesetsCli} publish --tag ${cleansedBranchName}`,
