@@ -12,4 +12,11 @@ pnpm add --save-dev --workspace-root @changesets/cli@3
 
 A consequence of this change is that a snapshot with no changesets now fails the job, aligning behaviour between this action and the Changesets CLI.
 
+It is also recommended to upgrade the official changesets action to v2:
+
+```diff
+-uses: changesets/action@v1
++uses: changesets/action@v2
+```
+
 For more details about this upgrade and what else might be required for your project please refer to the [Changesets V3 announcement](https://changesets.dev/blog/announcing-changesets-v3).
