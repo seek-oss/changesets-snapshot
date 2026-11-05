@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "private": false,
   "license": "MIT",
-  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "@seek/changesets-snapshot/source": "./src/index.ts",
@@ -12,9 +15,12 @@
     },
     "./package.json": "./package.json"
   },
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.mjs",
+      "./package.json": "./package.json"
+    }
+  },
   "scripts": {
     "build": "skuba build-package",
     "changeset": "changeset",
@@ -39,16 +45,10 @@
     "skuba": "16.4.2",
     "vitest": "^4.1.0"
   },
-  "packageManager": "pnpm@10.34.5",
   "engines": {
     "node": ">=22.14.0"
   },
-  "publishConfig": {
-    "exports": {
-      ".": "./dist/index.mjs",
-      "./package.json": "./package.json"
-    }
-  },
+  "packageManager": "pnpm@11.28.9",
   "inlinedDependencies": {
     "@actions/core": "3.0.1",
     "@actions/exec": "3.0.0",
@@ -88,6 +88,6 @@
     "entryPoint": "src/index.ts",
     "template": null,
     "type": "package",
-    "version": "16.2.0"
+    "version": "16.4.2"
   }
 }
